@@ -66,49 +66,35 @@
   </div>
 </div>
 		<div class="container-fluid">
+			<div class="row-fluid">
 			<ul class="breadcrumb well">
 				<li><a href="<?php echo U('Index/welcome');?>">首页</a> <span class="divider">/</span></li>
-				<li><a href="<?php echo U('Api/alist');?>">API</a>
+				<li><a href="<?php echo U('Api/alist');?>">API</a><span class="divider">/</span></li>
+				<li><a href="<?php echo U('Api/add');?>">新增</a>
 			</ul>
-			<div class="row-fluid well">
-				<form class="form-inline search_tool">
-					<label>ID：</label><input type="text" id="api_id" placeholder="API--ID">
-					<label>PATH：</label><input type="text" id="api_id" placeholder="URL的Path部分">
-					<label>负责人：</label><input type="text" id="api_id" placeholder="API录入的同学">
-					<button type="submit" class="btn btn-info">查找</button>
-				</form>
-			</div>
-			<div class="row-fluid toolbar">
-				<a href="<?php echo U('Api/add');?>"><button type="button" class="btn btn-info">新增</button></a>
-				<a href="#"><button type="button" class="btn btn-info">修改</button></a>
-				<a href="#"><button type="button" class="btn btn-info">删除</button></a>
-			</div>
-			<div class="row-fluid">
-				<table id="api_list" class="table table-hover table-condensed table-bordered table-striped" cellspacing="0" width="100%">
-					<thead>
-						<tr>
-							<th width="2%" style="text-align:center;"><input id="selectAll" type="checkbox" /></th>
-							<th width="5%" >ID</th>
-							<th width="30%">请求</th>
-							<th width="30%">响应</th>
-							<th width="28%">描述</th>
-							<th width="5%">责任人</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php $__FOR_START_26434__=1;$__FOR_END_26434__=16;for($i=$__FOR_START_26434__;$i < $__FOR_END_26434__;$i+=1){ ?><tr>
-								<td style="text-align:center;">
-									<input class="selectCell" name="apis[]" type="checkbox" value="<?php echo ($i); ?>"/>
-								</td>
-								<td><?php echo ($i); ?></td>
-								<td>System Architect</td>
-								<td>System Architect</td>
-								<td>Edinburgh</td>
-								<td>61</td>
-							</tr><?php } ?>
-					</tbody>
-				</table>
-				<span><?php echo W('Paging',$data,true);?></span>
+				<div class="container">
+					<form class="form-horizontal" method="post" action="<?php echo U('Api/doAdd');?>">
+						<div class="control-group">
+							<label class="control-label" for="inputEmail"><i class="required">*</i>请求信息：</label>
+							<div class="controls">
+								<textarea name="request" rows="10" class="span8" placeholder="请求的头信息" required></textarea>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="inputPassword"><i class="required">*</i>响应信息：</label>
+							<div class="controls">
+								<textarea name="reponse" rows="10" class="span8" placeholder="响应的头信息" required></textarea>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="inputPassword"><i class="required">*</i>描述说明：</label>
+							<div class="controls">
+								<input name="apiDesc" type="text" class="span8" placeholder="对该API的一些描述说明" required/>
+							</div>
+						</div>
+						<div style="text-align:center"><button type="submit" class="btn btn-info" style="text-align:center;">保存</button><div>
+					</form>
+				</div>
 			</div>
 		</div>
 		<div class="footer">

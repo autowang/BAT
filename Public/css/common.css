@@ -8,3 +8,13 @@ table thead th{
 .paging-total b{
 	color:#0080FF;
 }
+
+
+.required{
+	color: red;
+	font-size: 20px;
+	font-weight: bold;
+	position: relative;
+	top: 6px;
+	right: 10px;
+}

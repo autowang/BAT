@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<include file="Public:header" />
+		<link href="__PUBLIC__/css/api.css" rel="stylesheet">
+	</head>
+	<body>
+		<include file="Public:navbar" />
+		<div class="container-fluid">
+			<div class="row-fluid">
+			<ul class="breadcrumb well">
+				<li><a href="{:U('Index/welcome')}">首页</a> <span class="divider">/</span></li>
+				<li><a href="{:U('Api/alist')}">API</a><span class="divider">/</span></li>
+				<li><a href="{:U('Api/add')}">新增</a>
+			</ul>
+				<div class="container">
+					<form class="form-horizontal" method="post" action="{:U('Api/doAdd')}">
+						<div class="control-group">
+							<label class="control-label" for="inputEmail"><i class="required">*</i>请求信息：</label>
+							<div class="controls">
+								<textarea name="request" rows="10" class="span8" placeholder="请求的头信息" required></textarea>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="inputPassword"><i class="required">*</i>响应信息：</label>
+							<div class="controls">
+								<textarea name="reponse" rows="10" class="span8" placeholder="响应的头信息" required></textarea>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="inputPassword"><i class="required">*</i>描述说明：</label>
+							<div class="controls">
+								<input name="apiDesc" type="text" class="span8" placeholder="对该API的一些描述说明" required/>
+							</div>
+						</div>
+						<div style="text-align:center"><button type="submit" class="btn btn-info" style="text-align:center;">保存</button><div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<include file="Public:footer" />
+		</div>
+	</body>
+</html>
+<script src="__PUBLIC__/js/api.js"></script>
