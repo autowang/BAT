@@ -1,0 +1,10 @@
+table thead th{
+	color:#ffffff;
+	background-color: #3C3C3C;
+}
+.paging-total{
+	float: left;
+}
+.paging-total b{
+	color:#0080FF;
+}
