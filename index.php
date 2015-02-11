@@ -9,7 +9,7 @@
 	define('JMX_PATH', BASE_PATH.'/Jmx/');
 	define('LOG_PATH', BASE_PATH.'/Logs/');
 	//开启debug模式
-	define('APP_DEBUG', true);
+	//define('APP_DEBUG', true);
 	
 	//引入thinkphp核心文件
 	require './ThinkPHP/ThinkPHP.php';
