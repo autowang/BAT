@@ -7,7 +7,6 @@
 	define('BASE_PATH', dirname(__FILE__));
 	define('UPLOAD_PATH', BASE_PATH.'/Upload/');
 	define('JMX_PATH', BASE_PATH.'/Jmx/');
-	define('LOG_PATH', BASE_PATH.'/Logs/');
 	//开启debug模式
 	//define('APP_DEBUG', true);
 	
