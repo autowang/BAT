@@ -4,7 +4,7 @@ require_once("error.php");
 
 $config = array(
 
-	//'SHOW_PAGE_TRACE' =>true, //开启页面Trace
+	'SHOW_PAGE_TRACE' =>true, //开启页面Trace
 	
 	'LAYOUT_ON' => 'true',//开启模版布局
 
@@ -29,7 +29,7 @@ $config = array(
 	'DB_PWD'  => '123456', 
 	'TMPL_ACTION_ERROR' => 'Public:error', //重新定义错误跳转页面
 	
-	'JMETER' => BATH_PATH."/Agent/bin/jmeter",
+	'JMETER' => BASE_PATH."/Agent/bin/jmeter",
 
 );
 

@@ -67,7 +67,7 @@ class DataAction extends CommonAction
 			$upload->saveRule = '';
 			$path = UPLOAD_PATH.getAppId()."/";
 			if (!file_exists($path)){
-				mkdir($path);
+				mkdir($path,0777,true);
 			}
 			$upload->savePath = $path;
 			if(!$upload->upload()){
@@ -114,7 +114,7 @@ class DataAction extends CommonAction
 			$upload->saveRule = '';
 			$path = UPLOAD_PATH.getAppId()."/";
 			if (!file_exists($path)){
-				mkdir($path);
+				mkdir($path,0777,true);
 			}
 			$upload->savePath = $path;
 			if(!$upload->upload()){

@@ -227,7 +227,7 @@ class CaseAction extends CommonAction {
             $this->error('请选择需要下载的测试用例！', 'clist');
         }
         $jmx = A('Step')->jmx($caseId, 999999999,$planId='download');
-        D('Case')->strToFile(JMX_PATH.'download/',$caseId.".jmx",$jmx);
+        D('Case')->strToFile(JMX_PATH.'/download/',"$caseId.jmx",$jmx);
         $fileName = JMX_PATH."download/$caseId.jmx";
         import("ORG.Net.Http");
         Http::download($fileName, $caseId . ".jmx");

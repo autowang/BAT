@@ -199,7 +199,7 @@ class CaseModel extends CommonRelationModel{
 	 * @param unknown $resultId
 	 */
 	public function runCmd($caseId,$planId){
-		$jmx = JMX_PATH.$planId.'/'.$caseId.".jmx";
+		$jmx = JMX_PATH."$planId/$caseId.jmx";
 		$cmd = C('JMETER')." -n -t ".$jmx;
 		exec($cmd,$output,$retval);
 		return array('msg'=>$output,'code'=>$retval);

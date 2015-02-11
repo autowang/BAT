@@ -4,12 +4,11 @@ class CommonRelationModel extends RelationModel{
 	/**
 	 * 写入文件到指定的地方
 	 */
-	public function strToFile($path,$name,$content){
-		
+	public function strToFile($path,$file,$content){
 		if (!file_exists($path)){
-			mkdir($path);
+			mkdir($path,0777,true);
 		}
-		$file = $path.$name;
+		$file = $path.$file;
 		$handle = fopen($file, "w+");
 		if(!$handle){
 			return false;
