@@ -80,7 +80,7 @@ class ReportModel extends CommonRelationModel{
 	
 	public function saveJmeterLog($reportId){
 		$log = file_get_contents(BASE_PATH.'/jmeter.log');
-		$this->strToFile(LOG_PATH, "$reportId", $log);
+		$this->strToFile(BASE_PATH.'/Logs/', "$reportId", $log);
 	}
 	
 	/**
