@@ -29,7 +29,7 @@ $config = array(
 	'DB_PWD'  => '123456', 
 	'TMPL_ACTION_ERROR' => 'Public:error', //重新定义错误跳转页面
 	
-	'JMETER' => BATH_PATH."/Jmeter/apache-jmeter-2.11/bin/jmeter",
+	'JMETER' => BATH_PATH."/Agent/bin/jmeter",
 
 );
 

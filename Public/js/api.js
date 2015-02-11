@@ -10,7 +10,6 @@ $(document).ready(function(){
 	$("#api_update_form").submit(doUpdate);
 	
 	$("select").find("option[value="+$("select").attr("value")+"]").attr("selected",true);
-	
 	//更新操作勾选检查
 	$("#api_update").click(function(){
 		var checked_num = $(".selectCell:checked").length; 
