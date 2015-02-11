@@ -1,0 +1,45 @@
+<div class="span10 offset1">
+	<div class="span12">
+		<ul class="breadcrumb well">
+			<li>个人资料修改</li>
+		</ul>
+	</div>
+	<div class="span12">
+		<form id="user_update_info_form" class="form-horizontal">
+		<div class="span12">
+			<input type="hidden" name="id" value="{$user.id}" />
+			<div class="control-group span6">
+				<label class="control-label"><i class="required">*</i>名称：</label>
+				<div class="controls">
+					<textarea name="name" rows="1" class="span11" placeholder="用户名称" required>{$user.name}</textarea>
+				</div>	
+			</div>
+			<div class="control-group span6">
+				<label class="control-label"><i class="required">*</i>角色：</label>
+				<div class="controls">
+					<textarea name="role" class="span11" rows="1" disabled>{$user.roleName}</textarea>
+				</div>	
+			</div>
+			
+		</div>
+		<div class="span12">
+			<div class="control-group span6">
+				<label class="control-label"><i class="required">*</i>手机：</label>
+				<div class="controls">
+					<textarea name="phone" rows="1" class="span11" placeholder="用户手机" required onkeyup="value=value.replace(/[^\d]/g,'') "onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))">{$user.phone}</textarea>
+				</div>
+			</div>			
+			<div class="control-group span6">
+				<label class="control-label"><i class="required">*</i>邮箱：</label>
+				<div class="controls">
+					<input name="email" type="email" class="span11" placeholder="用户邮箱" value="{$user.email}" required></input>
+				</div>
+			</div>
+		</div>
+			<div style="text-align:center"><button type="submit" class="btn btn-info">保存</button ></div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/select2.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/select2.css">
+<script src="__PUBLIC__/js/user.js"></script>

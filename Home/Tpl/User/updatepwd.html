@@ -1,0 +1,39 @@
+<div class="span10 offset1">
+	<div class="span12">
+		<ul class="breadcrumb well">
+			<li>密码修改</li>
+		</ul>
+	</div>
+	<div class="span12" >
+		<form id="user_update_pwd_form" class="form-horizontal">
+		<div class="span12 offset2">
+			<input type="hidden" name="id" value="{$user.id}" />
+			<div class="control-group span6">
+				<label class="control-label"><i class="required">*</i>原密码：</label>
+				<div class="controls">
+					<textarea name="oldpwd" rows="1" class="span11" placeholder="请输入原密码" required></textarea>
+				</div>	
+			</div>					
+		</div>
+		<div class="span12">
+			<div class="control-group span6 offset2">
+				<label class="control-label"><i class="required">*</i>新密码：</label>
+				<div class="controls">
+					<textarea name="newpwd" rows="1" class="span11" placeholder="请输入新密码" required></textarea>
+				</div>
+			</div>						
+		</div>
+		<div class="span12">
+			<div class="control-group span6 offset2">
+				<label class="control-label"><i class="required">*</i>确认新密码：</label>
+				<div class="controls">
+					<textarea name="pwdConfirm" rows="1" class="span11" placeholder="请再一次输入新密码" required></textarea>
+				</div>
+			</div>						
+		</div>
+			<div style="text-align:center"><button type="submit" class="btn btn-info">保存</button ></div>
+		</form>
+	</div>
+</div>
+
+<script src="__PUBLIC__/js/user.js"></script>

@@ -1,0 +1,28 @@
+{__NOLAYOUT__}
+<table class="table table-hover table-condensed table-bordered table-striped">
+	<thead>
+		<tr>
+			<th width="7%">ID</th>
+			<th width="60%">PATH</th>
+			<th width="26%">METHOD</th>
+			<th width="7%">op</th>
+		</tr>
+	</thead>
+	<tbody>
+		<if condition="!empty($apis)">
+		<volist name="apis" id="api">
+		<tr>
+			<td>{$api.id}</td>
+			<td title="{$api.path|htmlspecialchars}">
+				<if condition="strlen($api['path']) gt 26">{$api.path|substr=0,26}...<else/>{$api.path}</if>
+			</td>
+			<td>{$api.method}</td>
+			<td><i class="icon-plus add-api" id="{$api.id}"></i></td>
+		</tr>
+		</volist>
+		<else />
+		<tr><td colspan="6" style="text-align:center;">对不起，暂时没有任何数据</td></tr>
+		</if>
+	</tbody>
+</table>
+<div class="green-black">{$paging}</div>

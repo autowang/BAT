@@ -1,0 +1,51 @@
+<div class="span10 offset1">
+	<div class="span12">
+		<ul class="breadcrumb">
+			<li><a href="{:U('Index/index')}">首页</a> <span class="divider">/</span></li>
+			<li><a href="{:U('Plan/plist')}">测试计划</a><span class="divider">/</span></li>
+			<li>执行历史</li>
+		</ul>
+	</div>
+	<div class="span12">
+		<table id="case_list" class="table table-hover table-condensed table-bordered table-striped" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th width="5%" >结果ID</th>
+					<th width="45%">计划描述</th>
+					<th width="10%">执行人</th>
+					<th width="15%">执行时间</th>
+					<th width="10%">状态</th>
+					<th width="5%">成功</th>
+					<th width="5%">失败</th>
+				</tr>
+			</thead>
+			<tbody>
+				<if condition="!empty($datas)"> 
+					<volist name="datas" id="data">
+					<tr>
+						<td>{$data.id}</td>
+						<td><a href="{:U('Report/cases')}?prid={$data.id}&planId={$Think.get.planId}">{$data.plan.desc|htmlspecialchars}</a></td>
+						<td>{$data.user.name|htmlspecialchars}</td>
+						<td>{$data.createTime}</td>
+						<td class="running">
+							<switch name="data.status">
+								<case value="1"><span style="color:red;font-weight:bolder">执行中</span></case>
+								<case value="2">执行完成</case>
+							</switch>
+						</td>
+						<td><span style="color:green;font-weight:bolder">{$data.success}</span></td>
+						<td>
+							<a href="{:U('Report/cases')}?prid={$data.id}&planId={$Think.get.planId}&result=2"><span style="color:red;font-weight:bolder">{$data.fail}</span></a>
+						</td>
+					</tr>
+					</volist>
+				<else />
+					<tr>
+						<td colspan="5" style="text-align: center;">对不起，暂时没有任何数据</td>
+					</tr>
+				</if>
+			</tbody>
+		</table>
+	</div>
+</div>
+<script src="__PUBLIC__/js/report.js"></script>

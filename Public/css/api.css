@@ -1,0 +1,16 @@
+
+.search_tool>input{
+	margin-right: 30px;
+}
+.search_tool>label{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.toolbar{
+	margin-bottom: 10px;
+}
+
+.table-condensed input{
+	margin-bottom: 3px;
+}

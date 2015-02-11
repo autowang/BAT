@@ -1,0 +1,62 @@
+<div class="span10 offset1">
+	<div class="span12">
+		<ul class="breadcrumb">
+			<li><a href="{:U('Index/welcome')}">首页</a> <span class="divider">/</span></li>
+			<li><a href="{:U('Data/index')}">测试数据</a>
+		</ul>
+	</div>
+	<div class="span12">
+		<div class="bc">
+			<div class="form-inline">
+				<label>ID：</label><input class="span2" type="text" id="data_id" placeholder="DATA--ID" />
+				<label>KEY：</label><input class="span3" type="text" id="data_key" placeholder="DATA--KEY" />
+				<label>VALUE：</label><input class="span2" type="text" id="data_value" placeholder="DATA-VALUE" />
+				<label>描述：</label><input class="span2" type="text" id="data_desc" placeholder="该数据的描述信息" />
+				<button class="btn btn-info" id="data_search_btn">查找</button>
+			</div>
+		</div>
+	</div>
+	<div class="btn-group tool-btn" >
+		<button id="data_add" class="btn btn-info">新增</button>
+		<button id="data_update" class="btn btn-info" >修改</button>
+		<button id="data_delete" class="btn btn-info" >删除</button>
+	</div>
+	<div class="span12" id="datas-data">
+		
+	</div>
+	<div id="data_modal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3 id="modalName">添加测试数据</h3>	
+		</div>
+		<form class="form-horizontal" method="post" id="data_add_form">
+			<div class="modal-body">
+				<input type="hidden" name="booleanUpdate"/>	
+				<input type="hidden" name="dataId"/>
+				<div class="control-group">
+					<label class="control-label"><i class="required">*</i>KEY：</label>
+					<div class="controls">
+						<input name="dataKey" type="text" placeholder="数据查找的KEY值" required></input>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label"><i class="required">*</i>VALUE：</label>
+					<div class="controls">
+						<input name="dataValue" type="text" placeholder="数据的值，与KEY一一对应" required></input>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label"><i class="required">*</i>描述：</label>
+					<div class="controls">
+						<input name="dataDesc" type="text" placeholder="对该数据的一些描述说明" required/>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button  class="btn" data-dismiss="modal" aria-hidden="true">关闭</button >
+				<button type="submit" id="data_save_btn" class="btn btn-primary">保存</button >
+			</div>
+		</form>
+	</div>
+</div>
+<script src="__PUBLIC__/js/data.js"></script>

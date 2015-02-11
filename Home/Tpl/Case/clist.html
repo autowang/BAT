@@ -1,0 +1,89 @@
+<div class="span10 offset1">
+	<div class="span12">
+		<ul class="breadcrumb">
+			<li><a href="{:U('Index/index')}">首页</a> <span class="divider">/</span></li>
+			<li><a href="{:U('Case/clist')}">测试用例</a><span class="divider">/</span></li>
+			<li>用例维护</li>
+		</ul>
+	</div>
+	<div class="span12">
+		<div class="bc">
+			<form class="form-inline" action="{:U('Case/clist')}" method="get">
+				<label>CASE-ID：</label>
+				<input type="text" class="span2" name="case_id" placeholder="CASE-ID" value="{$Think.get.case_id|htmlspecialchars}">
+				<label>DESC：</label>
+				<input type="text" class="span3" name="case_desc" placeholder="用例的名称"  value="{$Think.get.case_desc|htmlspecialchars}">
+				<label>创建人：</label>
+				<input type="text" class="span2" name="owner" placeholder="作者" value="{$Think.get.owner|htmlspecialchars}">
+				<label>类型：</label>
+				<select class="span1" name="case_type" value="{$Think.get.case_type}">
+					<option></option>
+					<option value="1">功能</option>
+					<option value="2">异常</option>
+					<option value="3">方法</option>
+				</select></br></br>
+				<label>API-ID&nbsp&nbsp&nbsp：&nbsp </label>
+				<input type="text" class="span2" name="api_id" placeholder="API-ID" value="{$Think.get.api_id|htmlspecialchars}">
+				<label>PATH：</label>
+				<input type="text" class="span3" name="api_path" placeholder="API-PATH" value="{$Think.get.api_path|htmlspecialchars}" autocomplete="off">
+				<button class="btn btn-info">查找</button>
+				<a class="btn btn-info" id="reset-btn">重置</a>
+			</form>
+		</div>
+	</div>
+	<div class="btn-toolbar">
+		<div class="btn-group tool-btn">
+			<a href="{:U('Case/add')}" class="btn btn-info">新增</a>
+			<a id="case_update" class="btn btn-info">修改</a>
+			<a id="case_delete" class="btn btn-info" >删除</a>
+		</div>
+		<div class="btn-group tool-btn">
+			<a id="case_run" class="btn btn-info">执行</a>
+			<a id="case_report" class="btn btn-info">结果</a>
+			<a id="case_download" class="btn btn-info">下载</a>
+			<a id="case_copy" class="btn btn-info">复制</a>
+		</div>
+	</div>
+	<div class="span12">
+		<table id="case_list" class="table table-hover table-condensed table-bordered table-striped" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th width="2%" style="text-align:center;"><input id="selectAll" type="checkbox" /></th>
+					<th width="7%" >ID</th>
+					<th width="65%">用例描述</th>
+					<th width="4%">类型</th>
+					<th width="7%">创建人</th>
+					<th width="15%">更新时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				<if condition="!empty($cases)"> 
+					<volist name="cases" id="case">
+					<tr>
+						<td style="text-align:center;">
+							<input class="selectCell" type="checkbox" value="{$case.id}" ctype="{$case.type}"/>
+						</td>
+						<td>{$case.id}</td>
+						<td>{$case.desc|htmlspecialchars}</td>
+						<td>
+							<switch name="case.type">
+								<case value="1">功能</case>
+								<case value="2">异常</case>
+								<case value="3">方法</case>
+							</switch>
+						</td>
+						<td>{$case.username|htmlspecialchars}</td>
+						<td>{$case.updateTime|htmlspecialchars}</td>
+					</tr>
+					</volist>
+				<else />
+					<tr>
+						<td colspan="5" style="text-align: center;">对不起，暂时没有任何数据</td>
+					</tr>
+				</if>
+			</tbody>
+		</table>
+	</div>
+	<div class="green-black">{$paging}</div>
+</div>
+<script src="__PUBLIC__/js/case.js"></script>

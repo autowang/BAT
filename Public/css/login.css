@@ -1,0 +1,8 @@
+.form-horizontal .control-label {
+  width: 100px;
+}
+
+.form-horizontal .controls {
+  margin-left: 110px;
+  margin-right: 50px;
+}

@@ -1,0 +1,35 @@
+<div class="span10 offset1">
+	<div class="span12">
+		<ul class="breadcrumb">
+			<li><a href="{:U('Index/index')}">首页</a> <span class="divider">/</span></li>
+			<li><a href="{:U('Api/alist')}">API</a><span class="divider">/</span></li>
+			<li>修改</li>
+		</ul>
+	</div>
+	<div class="span12">
+		<form id="api_update_form" class="form-horizontal">
+			<input type="hidden" name="apiId" value="{$api.id}" />
+			<div class="control-group">
+				<label class="control-label" for="inputEmail"><i class="required">*</i>请求信息：</label>
+				<div class="controls">
+					<textarea name="request" rows="15" class="span11" placeholder="请求的头信息" required>{$api.requestContent}</textarea>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label"><i class="required">*</i>所属模块：</label>
+				<div class="controls">
+					<select name="module" class="span2" value="{$api.mid}">
+					</select>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputPassword"><i class="required">*</i>描述说明：</label>
+				<div class="controls">
+					<input name="desc" type="text" class="span11" placeholder="对该API的一些描述说明"  value="{$api.desc|htmlspecialchars}"/>
+				</div>
+			</div>
+			<div style="text-align:center"><button type="submit" class="btn btn-info">保存</button ></div>
+		</form>
+	</div>
+</div>
+<script src="__PUBLIC__/js/api.js"></script>

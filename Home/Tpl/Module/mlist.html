@@ -1,0 +1,63 @@
+<div class="span10 offset1">
+	<div class="span12">
+		<ul class="breadcrumb">
+			<li><a href="{:U('Index/index')}">首页</a> <span class="divider">/</span></li>
+			<li><a href="{:U('Module/mlist')}">模块管理</a><span class="divider">/</span></li>
+			<li>列表</li>
+		</ul>
+	</div>
+	<div class="span12">
+		<div class="bc">
+			<form class="form-inline" action="{:U('Module/mlist')}" method="get">
+				<label>描述：</label>
+				<input style="width:150px;" type="text" name="desc" placeholder="模块描述" value="{$Think.get.desc}" /> 
+				<button type="submit" class="btn btn-info" >查找</button>
+				<a class="btn btn-info" id="reset-btn">重置</a>
+			</form>
+			
+		</div>
+	</div>
+	<if condition="getRole() eq 100">
+		<div class="btn-group tool-btn">
+			<a href="{:U('Module/add')}" class="btn btn-info">新增</a>
+			<a id="module_update" class="btn btn-info">修改</a>
+			<a id="module_delete" class="btn btn-info">删除</a>
+		</div>
+	</if>
+	<div class="span12">
+		<table class="table table-hover table-condensed table-bordered table-striped">
+			<thead>
+				<tr>
+					<if condition="getRole() eq 1">
+						<th width="2%" style="text-align: center;"><input
+							id="selectAll" type="checkbox" /></th>
+					</if>
+					<th width="5%">ID</th>
+					<th width="70%">描述</th>
+					<th width="20%">创建时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				<if condition="!empty($datas)"> 
+				<volist name="datas" id="data">
+				<tr>
+					<if condition="getRole() eq 1">
+						<td style="text-align: center;"><input class="selectCell"
+							type="checkbox" value="{$data.id}" /></td>
+					</if>
+					<td>{$data.id}</td>
+					<td>{$data.desc}</td>
+					<td>{$data.createTime}</td>
+				</tr>
+				</volist> 
+				<else />
+				<tr>
+					<td colspan="8" style="text-align: center;">对不起，暂时没有任何数据</td>
+				</tr>
+				</if>
+			</tbody>
+		</table>
+	</div>
+	<div class="green-black">{$paging}</div>
+</div>
+<script src="__PUBLIC__/js/module.js"></script>

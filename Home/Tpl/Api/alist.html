@@ -1,0 +1,93 @@
+<div class="span10 offset1">
+	<div class="span12">
+		<ul class="breadcrumb">
+			<li><a href="{:U('Index/index')}">首页</a> <span class="divider">/</span></li>
+			<li><a href="{:U('Api/alist')}">API</a> <span class="divider">/</span></li>
+			<li>列表</li>
+		</ul>
+	</div>
+	<div class="span12">
+		<div class="bc">
+			<form class="form-inline" action="{:U('Api/alist')}" method="get">
+				<label>ID：</label>
+				<input style="width:100px;" type="text" name="apiId" placeholder="API--ID" value="{$Think.get.apiId}" /> 
+				<label>PATH：</label>
+				<input id="api_path" class="span3" type="text" name="path" placeholder="URL的Path部分"  value="{$Think.get.path}" autocomplete="off"/> 
+				<label>方法：</label>
+				<select name="method" class="span1" value="{$Think.get.method}">
+					<option></option>
+					<option value="GET">GET</option>
+					<option value="POST">POST</option>
+					<option value="PUT">PUT</option>
+					<option value="DELETE">DELETE</option>
+					<option value="HEAD">HEAD</option>
+					<option value="OPTIONS">OPTIONS</option>
+					<option value="TRACE">TRACE</option>
+					<option value="PATCH">PATCH</option>
+				</select>
+				<label>模块：</label>
+				<select name="module" class="span1" value="{$Think.get.module}">
+				</select>
+				<label>负责人：</label>
+				<input class="span2" type="text" name="owner" placeholder="作者" value="{$Think.get.owner}" />
+				<button type="submit" class="btn btn-info" >查找</button>
+				<button class="btn btn-info" id="reset-btn">重置</button>
+			</form>
+		</div>
+	</div>
+	<div class="btn-group tool-btn">
+		<a href="{:U('Api/add')}" id="api_add" class="btn btn-info">新增</a>
+		<a id="api_update" class="btn btn-info">修改</a>
+		<a id="api_delete" class="btn btn-info">删除</a>
+	</div>
+	<div class="span12" id="apis-data">
+		<table class="table table-hover table-condensed table-bordered table-striped">
+			<thead>
+				<tr>
+					<th width="2%" style="text-align: center;"><input
+						id="selectAll" type="checkbox" /></th>
+					<th width="5%">ID</th>
+					<th width="15%">HOST</th>
+					<th width="20%">PATH</th>
+					<th width="5%">方法</th>
+					<th width="20%">描述</th>
+					<th width="5%">引用</th>
+					<th width="5%">模块</th>
+					<th width="8%">责任人</th>
+					<th width="15%">更新时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				<if condition="!empty($apis)"> 
+				<volist name="apis" id="api">
+				<tr>
+					<td style="text-align: center;"><input class="selectCell"
+						type="checkbox" value="{$api.id}" /></td>
+					<td>{$api.id}</td>
+					<td title="{$api.host|htmlspecialchars}">
+						<if condition="strlen($api['host']) gt 30">{$api.host|substr=0,30}...<else/>{$api.host}</if>
+					</td>
+					<td title="{$api.path|htmlspecialchars}">
+						<if condition="strlen($api['path']) gt 30">{$api.path|substr=0,30}...<else/>{$api.path}</if>
+					</td>
+					<td>{$api.method}</td>
+					<td title="{$api.desc|htmlspecialchars}">
+						<if condition="mb_strlen($api['desc'],'utf8') gt 14">{$api.desc|mb_substr=0,14,utf8}...<else/>{$api.desc}</if>
+					</td>
+					<td>{$api.times}</td>
+					<td>{$api.module.desc}</td>
+					<td>{$api.user.name}</td>
+					<td>{$api.updateTime}</td>
+				</tr>
+				</volist> 
+				<else />
+				<tr>
+					<td colspan="18" style="text-align: center;">对不起，暂时没有任何数据</td>
+				</tr>
+				</if>
+			</tbody>
+		</table>
+	</div>
+	<div class="green-black">{$paging}</div>
+</div>
+<script src="__PUBLIC__/js/api.js"></script>

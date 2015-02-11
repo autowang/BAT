@@ -1,0 +1,98 @@
+<div class="span10 offset1">
+	<div class="span12">
+		<ul class="breadcrumb">
+			<li><a href="{:U('Index/index')}">首页</a> <span class="divider">/</span></li>
+			<li><a href="{:U('Plan/plist')}">测试计划</a><span class="divider">/</span></li>
+			<li>修改</li>
+		</ul>
+	</div>
+	<div class="span12">
+		<form id="plan_update_form" class="form-horizontal">
+			<input id="plan-id" name="id" type="hidden" class="span11" value="{$plan.id}" />
+			<div class="control-group">
+				<label class="control-label"><i class="required">*</i>计划描述：</label>
+				<div class="controls">
+					<input name="desc" type="text" class="span11" value="{$plan.desc}"
+						required />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label"><i class="required">*</i>执行策略：</label>
+				<div class="controls">
+					<input name="period" type="text" class="span11"
+						value="{$plan.period}" required />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">私有定制：</label>
+				<div class="controls">
+					<textarea rows="3" class="span11" name="data" placeholder="覆盖用例中引用变量的值">{$plan.data}</textarea>
+					<div  class="tips">
+						<i class="icon-exclamation-sign"></i> 必须严格按照如下格式：key=value,多组用&符号相连
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">测试用例：</label>
+				<div class="controls">
+					<div class="span11">
+						<div style="margin-bottom: 10px;">
+							<a id="add-case" href="#add_case_modal" role="button"
+								class="btn btn-warning" data-toggle="modal"> 添加用例</a>
+						</div>
+						<div style="max-height: 300px; overflow: auto;">
+							<table class="table table-hover table-condensed table-bordered table-striped">
+								<thead>
+									<tr>
+										<th width="10%">ID</th>
+										<th width="80%">用例描述</th>
+										<th width="10%">操作</th>
+									</tr>
+								</thead>
+								<tbody id="need-to-add">
+									<volist name="cases" id="case">
+									<tr>
+										<input type="hidden" value="{$case.id}" name="caseIds[]"/>
+										<td>{$case.id}</td>
+										<td>{$case.desc}</td>
+										<td><i class='icon-remove'></i></td>
+									</tr>
+									</volist>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="text-align: center">
+				<button type="submit" class="btn btn-info">保存</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<!-- case model -->
+<div id="add_case_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">请选择需要添加的CASE</h3>
+	</div>
+	<div class="modal-body">
+		<div id="case_table" style="max-height:350px;overflow:auto;">
+			<table class="table table-hover table-condensed table-bordered table-striped">
+				<thead>
+					<tr>
+						<th width="2%" style="text-align:center;"><input id="selectAll" type="checkbox" /></th>
+						<th width="10%">ID</th>
+						<th>描述</th>
+					</tr>
+				</thead>
+				<tbody id="case_body">
+					
+				</tbody>
+			</table>
+		</div>
+		<div style="text-align:center;"><button id="case-do-add" class="btn btn-info">添加</button></div>
+	</div>
+</div>
+<script src="__PUBLIC__/js/plan.js"></script>

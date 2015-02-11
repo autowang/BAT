@@ -1,0 +1,101 @@
+<div class="span10 offset1">
+	<div class="span12">
+		<ul class="breadcrumb well">
+			<li><a href="{:U('Index/index')}">首页</a> <span class="divider">/</span></li>
+			<li><a href="{:U('User/ulist')}">用户管理</a><span class="divider">/</span></li>
+			<li>修改</li>
+		</ul>
+	</div>
+	<div class="span12">
+		<form id="user_update_form" class="form-horizontal">
+		<div class="span12">
+			<input type="hidden" name="id" value="{$user.id}" />
+			<div class="control-group span6">
+				<label class="control-label"><i class="required">*</i>名称：</label>
+				<div class="controls">
+					<textarea name="name" rows="1" class="span11" placeholder="用户名称" required>{$user.name}</textarea>
+				</div>	
+			</div>
+			<!-- <div class="control-group span6">
+				<label class="control-label"><i class="required">*</i>密码：</label>
+				<div class="controls">
+					<textarea name="password" rows="1" class="span11" placeholder="用户密码" required>{$user.password}</textarea>
+					<input name="oldpwd" value="{$user.password}" type="hidden"></input>
+				</div>	
+			</div> -->
+			<div class="control-group span6">
+				<label class="control-label"><i class="required">*</i>手机：</label>
+				<div class="controls">
+					<textarea name="phone" rows="1" class="span11" placeholder="用户手机" required onkeyup="value=value.replace(/[^\d]/g,'') "onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))">{$user.phone}</textarea>
+				</div>
+			</div>
+		</div>
+		<div class="span12">			
+			<div class="control-group span6">
+				<label class="control-label"><i class="required">*</i>邮箱：</label>
+				<div class="controls">
+					<input name="email" type="email" class="span11" placeholder="用户邮箱" value="{$user.email}" required></input>
+				</div>
+			</div>
+			<div class="control-group span6">
+				<label class="control-label"><i class="required">*</i>角色：</label>
+				<div class="controls">
+				      <select name="role" class="form-control span11">
+						<eq name="user.role" value="1">
+						<option selected>管理员</option>
+						<else/><option>管理员</option>
+						</eq>			       
+				         <eq name="user.role" value="2">
+						<option selected>测试人员</option>
+						<else/><option>测试人员</option>
+						</eq>
+						<eq name="user.role" value="3">
+						<option selected>开发人员</option>
+						<else/><option>开发人员</option>
+						</eq>
+				      </select>
+			      </div>
+			</div>
+		</div>
+		<div class="span12">			
+			<div class="control-group span6">
+				<label class="control-label"><i class="required">*</i>默认App：</label>
+				<div class="controls">					
+			      <select name="defaultApp" id ="defaultApp" class="form-control span11">
+			        <volist name="allApps" id="app">
+			        	<eq name="user.defaultApp" value="$app.appName">
+						<option selected>{$app.appName}</option>
+						<else/><option>{$app.appName}</option>
+						</eq>			       
+			        </volist>
+			      </select>
+				</div>
+			</div>			
+			<div class="control-group span6">
+				<label class="control-label">关联App：</label>
+				<div class="controls">
+					<select name="addedApps" id="addedApps" class="populate placeholder form-control span11" multiple>
+						<volist name="allApps" id="app">
+							<in name="app.appName" value="$user.apps">
+								<option selected>{$app.appName}</option>
+								<else/><option>{$app.appName}</option>
+							</in>
+							<!-- <if condition="in_array('$app.appName',array('NewDSP','SSP'))">
+								<option selected>{$app.appName}</option>
+								<else/><option>{$app.appName}</option>
+							</if> -->
+								 	
+				        </volist> 
+					</select>
+				</div>
+		</div>
+			
+			</div>
+			<div style="text-align:center"><button type="submit" class="btn btn-info">保存</button ></div>
+		</form>
+		
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/select2.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/select2.css">
+<script src="__PUBLIC__/js/user.js"></script>

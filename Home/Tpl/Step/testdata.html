@@ -1,0 +1,12 @@
+{__NOLAYOUT__}
+<BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Test Data Import" enabled="true">
+	<stringProp name="BeanShellSampler.query">
+		<volist name="step" id="vo">
+		vars.put(&quot;{$vo.key}&quot;,&quot;{$vo.value|addslashes|htmlspecialchars}&quot;);
+		</volist>
+	</stringProp>
+	<stringProp name="BeanShellSampler.filename"></stringProp>
+	<stringProp name="BeanShellSampler.parameters"></stringProp>
+	<boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+</BeanShellSampler>
+<hashTree/>

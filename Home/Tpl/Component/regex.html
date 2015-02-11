@@ -1,0 +1,38 @@
+{__NOLAYOUT__}
+<div class="accordion-group regex">
+	<input type="hidden" name="type" value="3"/>
+	<div class="accordion-heading">
+		<div class="item_tool">
+			<a href="#"><i class="icon-remove" title="删除"></i></a>
+			<a href="#"><i class="icon-circle-arrow-down" title="下移"></i></a>
+			<a href="#"><i class="icon-circle-arrow-up" title="上移"></i></a>
+		</div>
+		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#{$step.current}">
+			参数提取器
+		</a>
+	</div>
+	<div id="{$step.current}" class="accordion-body collapse">
+		<div class="accordion-inner form-horizontal">
+			<div class="span12">
+				<div class="control-group">
+				  	<label class="control-label"><i class="required">*</i>变量名：</label>
+				  	<div class="controls">
+				    	<input type="text" class="span10" name="param_name" placeholder="正则的匹配结果赋值给这个变量" value="{$step.param_name}">
+				  	</div>
+				  	<label class="control-label"><i class="required">*</i>正则表达式：</label>
+				  	<div class="controls">
+				    	<input type="text" class="span10" name="regex_expression" placeholder="填写正则表达式" value="{$step.regex_expression|htmlspecialchars}">
+				  	</div>
+				  	<label class="control-label"><i class="required">*</i>匹配数字：</label>
+				  	<div class="controls">
+				    	<input type="text" class="span10" name="select_which" placeholder="选取第几个匹配的项，0表示随机选一个" value="{$step.select_which}">
+				  	</div>
+				  	<label class="control-label">缺省值：</label>
+				  	<div class="controls">
+				    	<input type="text" class="span10" name="default_value" placeholder="无匹配项时变量的默认值" value="{$step.default_value}">
+				  	</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

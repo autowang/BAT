@@ -1,0 +1,48 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="span10 offset1">
+			<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+			<a class="brand" href="{:U('Index/index')}">BAT</a>
+			<ul class="nav pull-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"  id="current_space">欢迎您：<php>echo session('username');</php><b class="caret"></b></a>
+					<ul class="dropdown-menu" >						
+						<li><a href="{:U('User/updateInfo')}">个人资料</a></li>
+						<li><a href="{:U('User/updatePwd')}">密码修改</a></li>
+						<li><a href="{:U('Login/loginOut')}">安全退出</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="nav" id="appList">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="current_space" style="width:80px;">
+						<php>echo session('appName');</php><b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu" id="space_menu"></ul>
+				</li>
+			</ul>
+			<div class="nav-collapse collapse">
+				<ul class="nav">
+					<li id="index_page"><a href="{:U('Index/index')}">首页</a></li>
+					<li id="api_page" class="login_req"><a href="{:U('Api/alist')}">API</a></li>
+					<li id="data_page" class="login_req"><a href="{:U('Data/dlist')}">数据</a></li>
+					<li id="case_page" class="login_req"><a href="{:U('Case/clist')}">用例</a></li>
+					<li id="plan_page" class="login_req"><a href="{:U('Plan/plist')}">计划</a></li>
+					<li id="project_page" class="login_req dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">项目管理<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="{:U('User/ulist')}">用户管理</a></li>
+							<li><a href="{:U('App/applist')}">APP管理</a></li>
+							<li><a href="{:U('Module/mlist')}">模块管理</a></li>
+						</ul>
+					</li>
+					<li id="help_page"><a href="{:U('Help/index')}">函数帮助</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

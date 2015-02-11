@@ -1,0 +1,65 @@
+<div class="span10 offset1">
+	<div class="span12">
+		<ul class="breadcrumb">
+			<li><a href="{:U('Index/index')}">首页</a> <span class="divider">/</span></li>
+			<li><a href="{:U('Plan/plist')}">测试计划</a><span class="divider">/</span></li>
+			<li>计划维护</a>
+		</ul>
+	</div>
+	<div class="span12 bc form-inline">
+		<form class="form-inline" action="{:U('Plan/plist')}" method="get">
+			<label>Plan-ID：</label>
+			<input type="text" class="span2" name="plan_id" placeholder="CASE-ID" value="{$Think.get.plan_id}">
+			<label>描述：</label>
+			<input type="text" class="span2" name="plan_desc" placeholder="计划的描述" value="{$Think.get.plan_desc}">
+			<label>负责人：</label>
+			<input type="text" class="span2" name="owner" placeholder="编写计划的同学" value="{$Think.get.owner}">
+			<button class="btn btn-info">查找</button>
+			<a class="btn btn-info" id="reset-btn">重置</a>
+		</form>
+	</div>
+	<div class="btn-group tool-btn">
+		<a id="plan_add" class="btn btn-info" href="{:U('Plan/add')}">新增</a>
+		<a id="plan_update" class="btn btn-info">修改</a>
+		<a id="plan_delete" type="button" class="btn btn-info" >删除</a>
+	</div>
+	<div class="btn-group tool-btn">
+		<a id="plan_run" class="btn btn-info">执行计划</a>
+	</div>
+	<div class="span12">
+		<table id="plan_list" class="table table-hover table-condensed table-bordered table-striped" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th width="2%" style="text-align:center;"><input id="selectAll" type="checkbox" /></th>
+					<th width="8%" >ID</th>
+					<th width="55%">计划描述</th>
+					<th width="10%">用例个数</th>
+					<th width="10%">创建人</th>
+					<th width="15%">更新时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				<if condition="!empty($plans)"> 
+				<volist name="plans" id="plan">
+					<tr>
+						<td style="text-align:center;">
+							<input class="selectCell" type="checkbox" value="{$plan.id}"/>
+						</td>
+						<td>{$plan.id}</td>
+						<td><a href="{:U('Report/prlist')}?planId={$plan.id}">{$plan.desc}</a></td>
+						<td>{$plan.caseCount}</td>
+						<td>{$plan.username}</td>
+						<td>{$plan.updateTime}</td>
+					</tr>
+				</volist>
+				<else />
+				<tr>
+					<td colspan="8" style="text-align: center;">对不起，暂时没有任何数据</td>
+				</tr>
+				</if>
+			</tbody>
+		</table>
+	</div>
+	<div class="green-black">{$paging}</div>
+</div>
+<script src="__PUBLIC__/js/plan.js"></script>

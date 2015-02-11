@@ -1,0 +1,28 @@
+<div class="span10 offset1">
+	<div class="span12">
+		<ul class="breadcrumb well">
+			<li><a href="{:U('Index/index')}">首页</a> <span class="divider">/</span></li>
+			<li><a href="{:U('App/applist')}">APP管理</a><span class="divider">/</span></li>
+			<li>修改</li>
+		</ul>
+	</div>
+	<div class="span12">
+		<form id="app_update_form" class="form-horizontal">
+			<input type="hidden" name="id" value="{$app.id}" />
+			<div class="control-group">
+				<label class="control-label"><i class="required">*</i>名称：</label>
+				<div class="controls">
+					<textarea name="appName" rows="1" class="span11" placeholder="app的名称" required>{$app.appName}</textarea>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label"><i class="required">*</i>描述：</label>
+				<div class="controls">
+					<textarea name="appDesc" rows="5" class="span11" placeholder="app的描述信息" required>{$app.appDesc}</textarea>
+				</div>
+			</div>	
+			<div style="text-align:center"><button type="submit" class="btn btn-info">保存</button ></div>
+		</form>
+	</div>
+</div>
+<script src="__PUBLIC__/js/app.js"></script>

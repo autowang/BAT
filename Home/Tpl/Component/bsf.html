@@ -1,0 +1,33 @@
+{__NOLAYOUT__}
+<div class="accordion-group bsf">
+	<input type="hidden" name="type" value="5"/>
+	<div class="accordion-heading">
+		<div class="item_tool">
+			<a href="#"><i class="icon-remove" title="删除"></i></a>
+			<a href="#"><i class="icon-circle-arrow-down" title="下移"></i></a>
+			<a href="#"><i class="icon-circle-arrow-up" title="上移"></i></a>
+		</div>
+		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#{$step.current}">
+			脚本执行器-BSF
+		</a>
+	</div>
+	<div id="{$step.current}" class="accordion-body collapse">
+		<div class="accordion-inner form-horizontal">
+			<div class="span12">
+				<label class="control-label"><i class="required">*</i>脚本类型：</label>
+			  	<div class="controls">
+			  		<input type="hidden" name="script_type" value="{$step.script_type}">
+			    	<select class="span2 stype">
+						<option></option>
+						<option value="javascript">javascript</option>
+						<option value="beanshell">beanshell</option>
+					</select>
+			  	</div>
+			  	<label class="control-label"><i class="required">*</i>脚本内容：</label>
+			  	<div class="controls">
+			  		<textarea rows="10" class="span11" name="script_content">{$step.script_content}</textarea>
+			  	</div>
+			</div>
+		</div>
+	</div>
+</div>

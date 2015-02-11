@@ -1,0 +1,69 @@
+<div class="span10 offset1">
+	<div class="span12">
+		<div class="span3 bs-docs-sidebar">
+			<ul class="nav nav-list bs-docs-sidenav affix">
+				<volist name="data.details" id="detail">
+					<li class="step_detail" title="{$detail.api.desc}">
+						<a href="#{$detail.id}">
+							<i class="icon-chevron-right"></i>
+							<if condition="$detail['result'] eq 1"><span class="badge badge-warning">{$i}</span>&nbsp
+							<else /><span class="badge badge-important">{$i}</span>&nbsp
+							</if>
+							<if condition="mb_strlen($detail['api']['desc'],'utf8') gt 10">
+								{$detail.api.desc|mb_substr=0,10,utf8}...
+							<else/>{$detail.api.desc}</if>
+						</a>
+					</li>
+				</volist>
+			</ul>
+		</div>
+		<div class="span9" id="step_detail">
+			<div style="text-align:right"><a href="{:U('Case/update')}?id={$data.case.id}" class="btn affix btn-warning" style="top:300px;">修改用例</a></div>
+			<volist name="data.details" id="detail">
+			<section id="{$detail.id}">
+				<div class="page-header">
+					<h1>{$detail.api.desc}</h1>
+				</div>
+				<table class="table table-hover table-condensed table-bordered" cellspacing="0" width="100%">
+					<thead>
+						<tr>
+							<th width="10%" >标题</th>
+							<th width="90%">内容</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>请求耗时</td>
+							<td>{$detail.latency}ms</td>
+						</tr>
+						<tr>
+							<td>断言内容</td>
+							<td>{$detail.assertContent}</td>
+						</tr>
+						<tr>
+							<td>断言结果</td>
+							<td >
+								<if condition="$detail['result'] eq 1"><span style="color:green;font-weight:bolder">成功</span>
+								<else /><span style="color:red;font-weight:bolder">失败</span></if>
+							</td>
+						</tr>
+						<tr>
+							<td>请求</td>
+							<td><textarea rows="7" class="span12" readonly="true" style="margin:0px;">{$detail.requestHeader}</textarea></td>
+						</tr>
+						<tr>
+							<td>响应</td>
+							<td><textarea rows="7" class="span12" readonly="true" style="margin:0px;">{$detail.responseHeader}</textarea></td>
+						</tr>
+						<tr>
+							<td>响应正文</td>
+							<td><textarea rows="10" class="span12" readonly="true" style="margin:0px;">{$detail.responseBody}</textarea></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+			</volist>
+		</div>
+	</div>
+</div>
+<script src="__PUBLIC__/js/detail.js"></script>

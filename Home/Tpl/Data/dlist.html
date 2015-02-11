@@ -1,0 +1,69 @@
+<div class="span10 offset1">
+	<div class="span12">
+		<ul class="breadcrumb">
+			<li><a href="{:U('Index/index')}">首页</a> <span class="divider">/</span></li>
+			<li><a href="{:U('Data/dlist')}">数据</a><span class="divider">/</span></li>
+			<li>列表</li>
+		</ul>
+	</div>
+	<div class="span12">
+		<div class="bc">
+			<form class="form-inline" action="{:U('Data/dlist')}" method="get">
+				<label>ID：</label>
+				<input class="span2" type="text" name="id" placeholder="DATA--ID" value="{$Think.get.id}" />
+				<label>KEY：</label>
+				<input class="span3" type="text" name="key" placeholder="DATA--KEY" value="{$Think.get.key}" autocomplete="off"/>
+				<label>VALUE：</label>
+				<input class="span2" type="text" name="value" placeholder="DATA-VALUE" value="{$Think.get.value}"/>
+				<button type="submit" class="btn btn-info">查找</button>
+				<a class="btn btn-info" id="reset-btn">重置</a>
+			</form>
+		</div>
+	</div>
+	<div class="btn-group tool-btn" >
+		<a href="{:U('Data/add')}" class="btn btn-info">新增</a>
+		<a id="data_update" class="btn btn-info" >修改</a>
+		<a id="data_delete" class="btn btn-info" >删除</a>
+	</div>
+	<div class="span12" id="datas-data">
+		<table class="table table-hover table-condensed table-bordered table-striped">
+			<thead>
+				<tr>
+					<th width="2%" style="text-align:center;"><input id="selectAll" type="checkbox" /></th>
+					<th width="8%" >ID</th>
+					<th width="20%">KEY</th>
+					<th width="30%">VALUE</th>
+					<th width="25%">描述</th>
+					<th width="15%">更新时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				<if condition="!empty($testData)">
+				<volist name="testData" id="data">
+				<tr>
+					<td style="text-align:center;">
+						<input class="selectCell" type="checkbox" value="{$data.id}"/>
+					</td>
+					<td>{$data.id}</td>
+					<td class="key" title="{$data.key}">
+						<if condition="strlen($data['key']) gt 30">{$data.key|htmlspecialchars|mb_substr=0,30,utf8}...<else/>{$data.key}</if>
+					</td>
+					<td class="value" title="{$data.value|htmlspecialchars}">
+						<if condition="strlen($data['value']) gt 24">{$data.value|htmlspecialchars|mb_substr=0,24,utf8}...<else/>{$data.value}</if>
+					</td>
+					<td class="desc" title="{$data.desc|htmlspecialchars}">
+						<if condition="mb_strlen($data['desc'],'utf8') gt 24">{$data.desc|htmlspecialchars|mb_substr=0,24,utf8}...<else/>{$data.desc}</if>
+					</td>
+					<td>{$data.updateTime}</td>
+				</tr>
+				</volist>
+				<else />
+				<tr><td colspan="7" style="text-align:center;">对不起，暂时没有任何数据</td></tr>
+				</if>
+			</tbody>
+		</table>
+	</div>
+	<div class="green-black">{$paging}</div>
+	<div id="add_update_modal"></div>
+</div>
+<script src="__PUBLIC__/js/data.js"></script>

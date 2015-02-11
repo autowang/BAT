@@ -1,0 +1,28 @@
+<div class="span10 offset1">
+	<div class="span12">
+		<ul class="breadcrumb">
+			<li><a href="{:U('Index/welcome')}">首页</a> <span class="divider">/</span></li>
+			<li><a href="{:U('Api/index')}">API</a>
+		</ul>
+	</div>
+	<div class="span12">
+		<div class="bc">
+			<div class="form-inline">
+				<label>ID：</label><input class="span2" type="text" id="api_id" placeholder="API--ID" />
+				<label>PATH：</label><input class="span3" type="text" id="api_path" placeholder="URL的Path部分" />
+				<label>METHOD：</label><input class="span2" type="text" id="api_method" placeholder="GET/POST..." />
+				<label>负责人：</label><input class="span2" type="text" id="api_username" placeholder="API录入的同学" />
+				<button type="submit" class="btn btn-info" id="api_search_btn">查找</button>
+			</div>
+		</div>
+	</div> 
+	<div class="btn-group tool-btn" >
+		<button id="api_add" class="btn btn-info" >新增</button>
+		<button id="api_update" class="btn btn-info" >修改</button>
+		<button id="api_delete" class="btn btn-info" >删除</button>
+	</div>
+	<div class="span12" id="apis-data">
+		
+	</div>
+</div>
+<script src="__PUBLIC__/js/api.js"></script>

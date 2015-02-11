@@ -1,0 +1,82 @@
+{__NOLAYOUT__}
+				<HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="{$step.apiDesc|htmlspecialchars}" enabled="true">
+					<if condition="$step['method'] eq 'PUT' or (empty($step['params']) and !empty($step['paramStr']))">
+						<boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+						<elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+							<collectionProp name="Arguments.arguments">
+								<if condition="!empty($step['paramStr'])">
+								<elementProp name="" elementType="HTTPArgument">
+									<boolProp name="HTTPArgument.always_encode">false</boolProp>
+									<stringProp name="Argument.value">{$step.paramStr|htmlspecialchars}</stringProp>
+									<stringProp name="Argument.metadata">=</stringProp>
+								</elementProp>
+								</if>
+							</collectionProp>
+						</elementProp>
+					<else />
+						<elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+							<collectionProp name="Arguments.arguments">
+								<if condition="!empty($step['params'])">
+								<volist name="step.params" id="p">
+									<elementProp name="{$key}" elementType="HTTPArgument">
+										<stringProp name="Argument.name">{$key}</stringProp>
+										<stringProp name="Argument.value">{$p}</stringProp>
+										<stringProp name="Argument.metadata">=</stringProp>
+										<boolProp name="HTTPArgument.always_encode">false</boolProp>
+										<boolProp name="HTTPArgument.use_equals">true</boolProp>
+									</elementProp>
+								</volist>
+								</if>
+							</collectionProp>
+						</elementProp>
+					</if>
+					<stringProp name="HTTPSampler.domain">{$step.host}</stringProp>
+					<!-- 端口,默认80 -->
+					<stringProp name="HTTPSampler.port">{$step.port}</stringProp>
+					<!-- 连接超时时间，默认10秒 -->
+					<stringProp name="HTTPSampler.connect_timeout">20000</stringProp>
+					<!-- 响应超时时间 -->
+					<stringProp name="HTTPSampler.response_timeout">20000</stringProp>
+					<!-- 协议类型 -->
+					<stringProp name="HTTPSampler.protocol">{$step.protocol}</stringProp>
+					<!-- 请求参数编码类型,默认UTF8 -->
+					<stringProp name="HTTPSampler.contentEncoding"></stringProp>
+					<!-- http的path部分 -->
+					<stringProp name="HTTPSampler.path">{$step.path}</stringProp>
+					<!-- 请求method -->
+					<stringProp name="HTTPSampler.method">{$step.method}</stringProp>
+					<!-- 跟随重定向 -->
+					<boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+					<!-- 自动重定向 -->
+					<boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+					<!-- 长连接keepalive -->
+					<boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+					<!-- 有附件的时候才用到 -->
+					<boolProp name="HTTPSampler.DO_MULTIPART_POST">{$step.fileUpload}</boolProp>
+					<if condition="!empty($step['file_path'])">
+						<elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+							<collectionProp name="HTTPFileArgs.files">
+								<elementProp name="{$step.file_path}" elementType="HTTPFileArg">
+									<stringProp name="File.path">{$step.file_path}</stringProp>
+									<stringProp name="File.paramname">{$step.file_param}</stringProp>
+									<stringProp name="File.mimetype">{$step.mime_type}</stringProp>
+								</elementProp>
+							</collectionProp>
+						</elementProp>
+					</if>
+					<stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+					<boolProp name="HTTPSampler.monitor">false</boolProp>
+					<stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+				</HTTPSamplerProxy>
+				<hashTree>
+					<if condition="!empty($step['header'])">
+							{$step.header}
+					</if>
+					<if condition="!empty($step['assert'])">
+							{$step.assert}
+					</if>
+					<if condition="!empty($step['regex'])">
+							{$step.regex}
+					</if>
+					
+				</hashTree>

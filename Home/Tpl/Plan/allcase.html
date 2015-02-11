@@ -1,0 +1,15 @@
+{__NOLAYOUT__}
+<if condition="!empty($cases)">
+<volist name="cases" id="case">
+	<tr>
+		<input type="hidden" value="{$case.id}" name="caseIds[]"/>
+		<td style="text-align:center;"><input class="selectCell" type="checkbox" value="{$case.id}"/></td>
+		<td class="ids">{$case.id}</td>
+		<td>{$case.desc}</td>
+	</tr>
+</volist>
+<else />
+	<tr>
+		<td colspan="5" style="text-align: center;">对不起，暂时没有可添加的测试用例</td>
+	</tr>
+</if>

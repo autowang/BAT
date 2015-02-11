@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Baidu API Test</title>
+		<link rel="shortcut icon" href="__PUBLIC__/img/favicon.png">
+		<link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+		<link href="__PUBLIC__/css/docs.css" rel="stylesheet">
+		<link href="__PUBLIC__/css/prettify.css" rel="stylesheet">
+		<link href="__PUBLIC__/css/common.css" rel="stylesheet">
+		<link href="__PUBLIC__/css/page.css" rel="stylesheet">
+		<link href="__PUBLIC__/ZTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">  
+		<script src="__PUBLIC__/js/jquery.js"></script>
+		<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/js/common.js"></script>
+		<style type="text/css">
+		html{
+			height: 101%;
+		}
+			body {
+			padding-top: 60px;
+			padding-bottom: 40px;
+			}
+		</style>
+		<script type="text/javascript">
+			var URL = "__URL__";
+			var APP = "__APP__";
+			var ROOT = "__ROOT__";
+			var ACTION = "__ACTION__";
+		</script>
+	</head>
+	<body data-spy="scroll" data-target=".bs-docs-sidebar">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<include file="Public:navbar"/>
+			</div>
+			<div class="row-fluid">
+				{__CONTENT__}
+			</div>
+			<div class="row-fluid">
+				<include file="Public:footer" />
+			</div>
+		</div>
+		<div class="non">
+			<div id="error" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:400px;margin-left:-200px;">
+				<div class="modal-header alert alert-error">
+					<h4 id="myModalLabel">友情提示：</h4>
+				</div>
+				<div class="modal-body">
+					<i class="icon-warning-sign"></i> <span id="error_body"></span>
+				</div>
+				<div class="modal-footer">
+					<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+					<button class="btn btn-primary" id="error_conform" data-dismiss="modal" aria-hidden="true">确认</button>
+				</div>
+			</div>
+		</div>
+		<div style="">
+			<div class="alert alert-block alert-error" id="errmsg">
+			  	<i class="icon-warning-sign"></i><strong>Warning：</strong>
+			  	<span></span>
+			</div>
+		</div>
+	</body>
+</html>

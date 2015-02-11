@@ -1,0 +1,30 @@
+<div class="span10 offset1">
+	<ul class="breadcrumb">
+		<li><a href="{:U('Index/index')}">首页</a> <span class="divider">/</span></li>
+		<li><a href="{:U('Data/dlist')}">数据</a><span class="divider">/</span></li>
+		<li>新增</li>
+	</ul>
+	<form class="form-horizontal" method="post" action="{:U('Data/doAdd')}" enctype="multipart/form-data">
+		<div class="control-group">
+			<label class="control-label"><i class="required">*</i>KEY：</label>
+			<div class="controls">
+				<input name="key" type="text" required autocomplete="off" class="span10"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label"><i class="required">*</i>VALUE：</label>
+			<div class="controls">
+				<input name="value" type="text" placeholder="数据的值，与KEY一一对应" required  class="span10"/></br></br>
+				<input name="upload_file" type="file"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label"><i class="required">*</i>描述：</label>
+			<div class="controls">
+				<input name="desc" type="text" placeholder="对该数据的一些描述说明" required  class="span10"/>
+			</div>
+		</div>
+		<div style="text-align:center;"><button class="btn btn-info">保存</button></div>
+	</form>
+</div>
+<script src="__PUBLIC__/js/data.js"></script>

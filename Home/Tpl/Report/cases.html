@@ -1,0 +1,92 @@
+<div class="span10 offset1">
+	<div class="span12">
+		<ul class="breadcrumb">
+			<li><a href="{:U('Index/index')}">首页</a> <span class="divider">/</span></li>
+			<li><a href="{:U('Plan/plist')}">测试计划</a><span class="divider">/</span></li>
+			<li>执行结果</li>
+		</ul>
+	</div>
+	<div class="span12">
+		<div class="bc">
+			<form class="form-inline" action="{:U('Report/cases')}" method="get">
+				<input type="hidden" name="prid" value="{$Think.get.prid}">
+				<input type="hidden" name="planId" value="{$Think.get.planId}">
+				<label>用例ID：</label>
+				<input style="width:100px;" type="text" name="caseId" placeholder="测试用例ID" value="{$Think.get.caseId}" /> 
+				<label>执行结果：</label>
+				<select name="result" class="span1" value="{$Think.get.result}">
+					<option></option>
+					<option value="1">成功</option>
+					<option value="2">失败</option>
+				</select>
+				<button type="submit" class="btn btn-info" >查找</button>
+				<a class="btn btn-info" id="reset-btn">重置</a>
+			</form>
+		</div>
+	</div>
+	<div class="span12">
+		<table id="case_list" class="table table-hover table-condensed table-bordered table-striped" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th width="5%" >报告ID</th>
+					<th width="5%" >用例ID</th>
+					<th width="50%">用例名称</th>
+					<th width="15%">执行时间</th>
+					<th width="10%">结果</th>
+					<th width="5%">日志</th>
+				</tr>
+			</thead>
+			<tbody>
+				<if condition="!empty($datas)"> 
+					<volist name="datas" id="data">
+					<tr>
+						<td>{$data.id}</td>
+						<td><a href="{:U('Case/update')}?id={$data.case.id}" target="_blank">{$data.case.id}</a></td>
+						<td title="{$data.case.desc|htmlspecialchars}">
+							<a href="{:U('Detail/details')}?caseId={$data.case.id}&reportId={$data.id}" target="_blank">
+							<if condition="mb_strlen($data['case']['desc'],'utf8') gt 40">
+								{$data.case.desc|htmlspecialchars|mb_substr=0,40,utf8}...
+							<else/>{$data.case.desc|htmlspecialchars}</if>
+							</a>
+						</td>
+						<td>{$data.createTime}</td>
+						<td>
+							<switch name="data.result">
+								<case value="1"><span style="color:green;font-weight:bolder">成功</span></case>
+								<case value="2"><span style="color:red;font-weight:bolder">失败</span></case>
+								<default /><span style="color:#BB5E00;font-weight:bolder">等待</span>
+							</switch>
+						</td>
+						<td><a href="#" class="log-detail" id="{$data.id}" data-placement="left" data-original-title title>查看</a></td>
+					</tr>
+					</volist>
+				<else />
+					<tr>
+						<td colspan="5" style="text-align: center;">对不起，暂时没有任何数据</td>
+					</tr>
+				</if>
+			</tbody>
+		</table>
+	</div>
+	<div class="green-black">{$paging}</div>
+</div>
+<script src="__PUBLIC__/js/plan.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+     $("select").find("option[value="+$("select").attr("value")+"]").attr("selected",true);
+	 $.ajax({
+           type: "get",
+           url: URL + "/getStatus",
+           data: "prid=" + {$Think.get.prid},
+           success:function (result) {
+           	status = result.status;
+           	if(status == 10001){
+           		redirect('/Login/login');
+           	}
+           	if (result.data == 1) {
+           		setTimeout("location.reload()",2000);
+           	}
+           },
+       });	
+});
+</script>

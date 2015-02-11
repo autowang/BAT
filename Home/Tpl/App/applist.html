@@ -1,0 +1,70 @@
+<div class="span10 offset1">
+	<div class="span12">
+		<ul class="breadcrumb">
+			<li><a href="{:U('Index/index')}">首页</a> <span class="divider">/</span></li>
+			<li><a href="{:U('App/applist')}">APP管理</a><span class="divider">/</span></li>
+			<li>列表</li>
+		</ul>
+	</div>
+	<div class="span12">
+		<div class="bc">
+			<form class="form-inline" action="{:U('App/applist')}" method="get">
+				<label>ID：</label>
+				<input style="width:100px;" type="text" name="id" placeholder="App--ID" value="{$Think.get.id}" /> 
+				<label>Name：</label>
+				<input class="span3" type="text" name="appName" placeholder="App--Name" value="{$Think.get.appName}"/> 
+				<button type="submit" class="btn btn-info" >查找</button>
+				<a class="btn btn-info" id="reset-btn">重置</a>
+			</form>
+		</div>
+	</div>
+	<if condition="getRole() eq 1">
+		<div class="btn-group tool-btn">
+			<a href="{:U('App/add')}" id="app_add" class="btn btn-info">新增</a>
+			<button id="app_update" class="btn btn-info">修改</button>
+			<button id="app_delete" class="btn btn-info">删除</button>
+		</div>
+	</if>
+	<div class="span12" id="apps-data">
+		<table class="table table-hover table-condensed table-bordered table-striped">
+			<thead>
+				<tr>
+					<if condition="getRole() eq 1">
+						<th width="2%" style="text-align: center;"><input
+							id="selectAll" type="checkbox" /></th>
+					</if>		
+					<th width="8%">ID</th>
+					<th width="12%">名称</th>
+					<th width="40%">描述</th>
+					<th width="20%">创建时间</th>
+					<th width="20%">更新时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				<if condition="!empty($apps)"> 
+				<volist name="apps" id="app">
+				<tr>
+					<if condition="getRole() eq 1">
+						<td style="text-align: center;"><input class="selectCell"
+							type="checkbox" value="{$app.id}" /></td>
+					</if>
+					<td>{$app.id}</td>	
+					<td>{$app.appName}</td>
+					<td title="{$app.appDesc}">
+						<if condition="mb_strlen($app['appDesc'],'utf8') gt 40">{$app.appDesc|mb_substr=0,40,utf8}...<else/>{$app.appDesc}</if>
+					</td>	
+					<td>{$app.createTime}</td>
+					<td>{$app.updateTime}</td>
+				</tr>
+				</volist> 
+				<else />
+				<tr>
+					<td colspan="8" style="text-align: center;">对不起，暂时没有任何数据</td>
+				</tr>
+				</if>
+			</tbody>
+		</table>
+	</div>
+	<div class="green-black">{$paging}</div>
+</div>
+<script src="__PUBLIC__/js/app.js"></script>

@@ -1,0 +1,262 @@
+<div class="span10 offset1">
+	<div class="span12">
+		<div class="span3 bs-docs-sidebar">
+			<ul class="nav nav-list bs-docs-sidenav affix">
+				<li><a href="#time"><i class="icon-chevron-right"></i>获取时间</a></li>
+				<li><a href="#random"><i class="icon-chevron-right"></i>随机生成</a></li>
+				<li><a href="#lower-upper"><i class="icon-chevron-right"></i>大小写转换</a></li>
+				<li><a href="#url"><i class="icon-chevron-right"></i>URL编码</a></li>
+				<li><a href="#deal-string"><i class="icon-chevron-right"></i>字符串处理</a></li>
+			</ul>
+		</div>
+		<div class="span9">
+			<section id="time">
+				<div class="page-header">
+					<h1>获取时间</h1>
+				</div>
+				<h2>__time(format)</h2>
+				<p>获取格式化的当前时间</p><p>直接在测试步骤中以${__time(format)}的方式调用</p>
+				<h2>参数选项</h2>
+				<table class="table table-hover table-condensed table-bordered table-striped">
+					<thead>
+						<tr>
+							<th width="25%">名称</th>
+							<th>描述</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>YMD</td>
+							<td>年月日:EG:20121212</td>
+						</tr>
+						<tr>
+							<td>HMS</td>
+							<td>时分秒:EG:182030</td>
+						</tr>
+						<tr>
+							<td>YMDHMS</td>
+							<td>年月日时分秒:EG:20121212182030</td>
+						</tr>
+						<tr>
+							<td>yyyyMMddHHmmssSSS</td>
+							<td>精确到微秒</td>
+						</tr>
+					</tbody>
+				</table>
+				<div  class="tips">
+					<i class="icon-exclamation-sign"></i> 友情提醒，参数间可以添加分隔符，例如：Y-M-D H:M:S 2012-12-12 18:20:30
+				</div>
+			</section>
+			<section id="random">
+				<div class="page-header">
+					<h1>随机生成</h1>
+				</div>
+				<h2>__Random(min,max,variable)</h2>
+				<p>生成一个随机数</p><p>直接在测试步骤中以${__Random(min,max,variable)}的方式调用</p>
+				<h2>参数选项</h2>
+				<table class="table table-hover table-condensed table-bordered table-striped">
+					<thead>
+						<tr>
+							<th width="25%">名称</th>
+							<th>描述</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>min</td>
+							<td>必填，取值范围的最小值，int</td>
+						</tr>
+						<tr>
+							<td>max</td>
+							<td>必填，取值范围的最大值，int</td>
+						</tr>
+						<tr>
+							<td>variable</td>
+							<td>选填，临时变量名，用来存储函数执行结果</td>
+						</tr>
+					</tbody>
+				</table>
+				<hr>
+				<h2>__RandomString(length,characters,variable)</h2>
+				<p>生成一个随机字符串</p><p>直接在测试步骤中以${__RandomString(length,characters,variable)}的方式调用</p>
+				<h2>参数选项</h2>
+				<table class="table table-hover table-condensed table-bordered table-striped">
+					<thead>
+						<tr>
+							<th width="25%">名称</th>
+							<th>描述</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>length</td>
+							<td>必填，指定随机生成字符串的长度，int</td>
+						</tr>
+						<tr>
+							<td>characters</td>
+							<td>选填，生成字符串的字符取值范围</td>
+						</tr>
+						<tr>
+							<td>variable</td>
+							<td>选填，临时变量名，用来存储函数执行结果</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+			<section id="lower-upper">
+				<div class="page-header">
+					<h1>大小写转换</h1>
+				</div>
+				<h2>__lowercase(string,variable)</h2>
+				<p>大写转小写</p><p>直接在测试步骤中以${__lowercase(string,variable)}的方式调用</p>
+				<h2>参数选项</h2>
+				<table class="table table-hover table-condensed table-bordered table-striped">
+					<thead>
+						<tr>
+							<th width="25%">名称</th>
+							<th>描述</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>string</td>
+							<td>必填，需要转换的字符串，string</td>
+						</tr>
+						<tr>
+							<td>variable</td>
+							<td>选填，临时变量名，用来存储函数执行结果</td>
+						</tr>
+					</tbody>
+				</table>
+				<hr>
+				<h2>__uppercase(string,variable)</h2>
+				<p>小写转大写</p>
+				<p>直接在测试步骤中以${__uppercase(string,variable)}的方式调用</p>
+				<h2>参数选项</h2>
+				<table class="table table-hover table-condensed table-bordered table-striped">
+					<thead>
+						<tr>
+							<th width="25%">名称</th>
+							<th>描述</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>string</td>
+							<td>必填，需要转换的字符串，string</td>
+						</tr>
+						<tr>
+							<td>variable</td>
+							<td>选填，临时变量名，用来存储函数执行结果</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+			<section id="url">
+				<div class="page-header">
+					<h1>URL编码&解码</h1>
+				</div>
+				<h2>__urlencode(string)</h2>
+				<p>url编码，使用 Java class URLEncoder</p><p>直接在测试步骤中以${__urlencode(string)}的方式调用</p>
+				<h2>参数选项</h2>
+				<table class="table table-hover table-condensed table-bordered table-striped">
+					<thead>
+						<tr>
+							<th width="25%">名称</th>
+							<th>描述</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>string</td>
+							<td>必填，指定需要编码的字符，string</td>
+						</tr>
+					</tbody>
+				</table>
+				<hr>
+				<h2>__urldecode(string)</h2>
+				<p>URL解码</p><p>直接在测试步骤中以${__urldecode(string)}的方式调用</p>
+				<h2>参数选项</h2>
+				<table class="table table-hover table-condensed table-bordered table-striped">
+					<thead>
+						<tr>
+							<th width="25%">名称</th>
+							<th>描述</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>string</td>
+							<td>必填，指定需要编码的字符，string</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+			<section id="deal-string">
+				<div class="page-header">
+					<h1>字符串处理</h1>
+				</div>
+				<h2>__substring(string,begin,end,variable)</h2>
+				<p>字符串截取</p><p>直接在测试步骤中以${__substring(string,begin,end,variable)}的方式调用</p>
+				<h2>参数选项</h2>
+				<table class="table table-hover table-condensed table-bordered table-striped">
+					<thead>
+						<tr>
+							<th width="25%">名称</th>
+							<th>描述</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>string</td>
+							<td>必填，指定需要编码的字符，string</td>
+						</tr>
+						<tr>
+							<td>begin</td>
+							<td>必填，截取开始的索引，int</td>
+						</tr>
+						<tr>
+							<td>end</td>
+							<td>必填，截取结束的索引，int</td>
+						</tr>
+						<tr>
+							<td>variable</td>
+							<td>选填，临时变量名，用来存储函数执行结果</td>
+						</tr>
+					</tbody>
+				</table>
+				<hr>
+				<h2>__strLen(string,variable)</h2>
+				<p>计算字符串长度</p><p>直接在测试步骤中以${__strLen(string,variable)}的方式调用</p>
+				<h2>参数选项</h2>
+				<table class="table table-hover table-condensed table-bordered table-striped">
+					<thead>
+						<tr>
+							<th width="25%">名称</th>
+							<th>描述</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>string</td>
+							<td>必填，需要计算长度的原始字符串，string</td>
+						</tr>
+						<tr>
+							<td>variable</td>
+							<td>选填，临时变量名，用来存储函数执行结果</td>
+						</tr>
+					</tbody>
+				</table>
+				<hr>
+			</section>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#help_page").addClass("active");
+		$('.bs-docs-sidenav').scrollspy();
+		$(".bs-docs-sidenav li").removeClass("active");
+		$(".bs-docs-sidenav li").first().addClass("active");
+	});
+</script>

@@ -1,0 +1,23 @@
+{__NOLAYOUT__}
+<layout name="template" />
+			<ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="{$case.desc}" enabled="true">
+				<stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+				<elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+					<boolProp name="LoopController.continue_forever">false</boolProp>
+					<!-- 执行次数，默认写死一次 -->
+					<stringProp name="LoopController.loops">1</stringProp>
+				</elementProp>
+				<!-- 线程数 -->
+				<stringProp name="ThreadGroup.num_threads">{$case.threadNum}</stringProp>
+				<!-- 启动时间 -->
+				<stringProp name="ThreadGroup.ramp_time">1</stringProp>
+				<longProp name="ThreadGroup.start_time"><php>echo time();</php></longProp>
+				<longProp name="ThreadGroup.end_time"><php>echo time();</php></longProp>
+				<boolProp name="ThreadGroup.scheduler">false</boolProp>
+				<!-- 持续时间 -->
+				<stringProp name="ThreadGroup.duration">{$case.runTime}</stringProp>
+				<stringProp name="ThreadGroup.delay"></stringProp>
+			</ThreadGroup>
+			<hashTree>
+				{$steps}
+			</hashTree>

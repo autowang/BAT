@@ -1,0 +1,12 @@
+{__NOLAYOUT__}
+<HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
+					<collectionProp name="HeaderManager.headers">
+						<volist name="step" id="h">
+							<elementProp name="Accept-Language" elementType="Header">
+							  <stringProp name="Header.name">{$key}</stringProp>
+							  <stringProp name="Header.value">{$h|htmlspecialchars}</stringProp>
+							</elementProp>
+						</volist>
+					</collectionProp>
+					</HeaderManager>
+					<hashTree/>

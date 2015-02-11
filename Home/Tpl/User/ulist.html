@@ -1,0 +1,81 @@
+<div class="span10 offset1">
+	<div class="span12">
+		<ul class="breadcrumb">
+			<li><a href="{:U('Index/index')}">首页</a> <span class="divider">/</span></li>
+			<li><a href="{:U('User/ulist')}">用例管理</a><span class="divider">/</span></li>
+			<li>列表</li>
+		</ul>
+	</div>
+	<div class="span12">
+		<div class="bc">
+			<form class="form-inline" action="{:U('User/ulist')}" method="get">
+				<label>ID：</label>
+				<input style="width:150px;" type="text" name="id" placeholder="User--ID" value="{$Think.get.id}" /> 
+				<label>Name：</label>
+				<input style="width:150px;" class="span3" type="text" name="name" placeholder="User--Name" value="{$Think.get.name}"/>
+				<label>Phone：</label>
+				<input style="width:160px;" type="text" name="phone" placeholder="User--phone" value="{$Think.get.phone}" /> 
+				<button type="submit" class="btn btn-info" >查找</button>
+				<a class="btn btn-info" id="reset-btn">重置</a>
+			</form>
+			
+		</div>
+	</div>
+	<if condition="getRole() eq 1">
+		<div class="btn-group tool-btn">
+			<a href="{:U('User/add')}" id="user_add" class="btn btn-info">新增</a>
+			<button id="user_update" class="btn btn-info">修改</button>
+			<button id="user_delete" class="btn btn-info">删除</button>
+		</div>
+	</if>
+	<div class="span12" id="users-data">
+		<table class="table table-hover table-condensed table-bordered table-striped">
+			<thead>
+				<tr>
+					<if condition="getRole() eq 1">
+						<th width="2%" style="text-align: center;"><input
+							id="selectAll" type="checkbox" /></th>
+					</if>
+					<th width="5%">ID</th>
+					<th width="10%">姓名</th>
+					<th width="11%">手机</th>
+					<th width="24%">邮箱</th>
+					<th width="14%">APP</th>
+					<th width="18%">创建时间</th>
+					<th width="18%">更新时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				<if condition="!empty($users)"> 
+				<volist name="users" id="user">
+				<tr>
+					<if condition="getRole() eq 1">
+						<td style="text-align: center;"><input class="selectCell"
+							type="checkbox" value="{$user.id}" /></td>
+					</if>
+					<td>{$user.id}</td>	
+					<td>{$user.name}</td>
+					<td>{$user.phone}</td>
+					<td title="{$user.email}">
+						<if condition="mb_strlen($user['email'],'utf8') gt 30">{$user.email|mb_substr=0,30,utf8}...<else/>{$user.email}</if>
+					</td>	
+					<td title="{$user.appNames}">
+						<if condition="mb_strlen($user['appNames'],'utf8') gt 30">{$user.appNames|mb_substr=0,30,utf8}...<else/>{$user.appNames}</if>
+					</td>
+					<td>{$user.createTime}</td>
+					<td>{$user.updateTime}</td>
+				</tr>
+				</volist> 
+				<else />
+				<tr>
+					<td colspan="8" style="text-align: center;">对不起，暂时没有任何数据</td>
+				</tr>
+				</if>
+			</tbody>
+		</table>
+	</div>
+	<div class="green-black">{$paging}</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/select2.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/select2.css">
+<script src="__PUBLIC__/js/user.js"></script>

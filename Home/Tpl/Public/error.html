@@ -1,0 +1,22 @@
+<div class="offset4 span4" style="margin-top:100px;text-align:center">
+	<div class="span3" style="text-align:left;margin-top:20px;padding-left:20px">
+		<img alt="" src="__PUBLIC__/img/han.gif">
+	</div>
+	<div class="span9" style="text-align:left;margin-top:20px;">
+		<h3 class="error"><?php echo($error); ?></h3>
+		页面自动 <a id="href" href="<?php echo($jumpUrl); ?>">跳转</a>&nbsp&nbsp&nbsp
+		等待时间： <b id="wait"><?php echo($waitSecond); ?></b>
+	</div>
+</div>
+<script type="text/javascript">
+(function(){
+var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+var interval = setInterval(function(){
+	var time = --wait.innerHTML;
+	if(time == 0) {
+		location.href = href;
+		clearInterval(interval);
+	};
+}, 1000);
+})();
+</script>

@@ -1,0 +1,42 @@
+{__NOLAYOUT__}
+					<BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
+						<stringProp name="BeanShellAssertion.query">import com.mysql.jdbc.Driver; 
+import java.sql.*;  
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+response = ResponseHeaders + SampleResult.getResponseDataAsString();
+assertStr = &quot;{$step.assert|htmlspecialchars}&quot;;
+Pattern pat = Pattern.compile(assertStr);  
+Matcher mat = pat.matcher(response);  
+boolean rs = mat.find();
+result = 1;
+if(!rs){
+	result = 2;
+}
+
+String url = &quot;jdbc:mysql://{$step.ip}/{$step.db}?user={$step.username}&amp;password={$step.password}&amp;useUnicode=true&amp;characterEncoding=UTF8&quot;;
+String query = &quot;{$step.query}&quot;;
+String driver = &quot;com.mysql.jdbc.Driver&quot;;
+try {
+	c = getClass( driver ); 
+	Connection conn = DriverManager.getConnection(url);
+	PreparedStatement ps = conn.prepareStatement(query);
+	ps.setString(1,SamplerData + &quot;\r\nRequestHeaders:\n&quot; + RequestHeaders);
+	ps.setString(2,ResponseHeaders);
+	ps.setString(3,SampleResult.getResponseDataAsString());
+	ps.setString(4,SampleResult.getLatency().toString());
+	ps.setInt(5,result);
+	ps.setInt(6,{$step.reportId|default=999999999});
+	ps.setString(7,assertStr);
+	ps.executeUpdate();
+	ps.close();
+	conn.close();
+} catch (Exception e) {
+	System.out.println(e.toString());
+}
+						</stringProp>
+						<stringProp name="BeanShellAssertion.filename"></stringProp>
+						<stringProp name="BeanShellAssertion.parameters"></stringProp>
+						<boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+					</BeanShellAssertion>
+					<hashTree/>

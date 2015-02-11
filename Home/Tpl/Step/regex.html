@@ -1,0 +1,10 @@
+{__NOLAYOUT__}
+				<RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="true">
+					<stringProp name="RegexExtractor.useHeaders">false</stringProp>
+					<stringProp name="RegexExtractor.refname">{$step.param_name}</stringProp>
+					<stringProp name="RegexExtractor.regex">{$step.regex_expression|htmlspecialchars}</stringProp>
+					<stringProp name="RegexExtractor.template">$1$</stringProp>
+					<stringProp name="RegexExtractor.default">{$step.default_value}</stringProp>
+					<stringProp name="RegexExtractor.match_number">{$step.select_which}</stringProp>
+				</RegexExtractor>
+				<hashTree/>
