@@ -28,7 +28,7 @@ class ApiAction extends CommonAction {
             	$user = D("User")->getUser(array('name'=>trim($owner)));
                 $condition['userId'] = $user[0]['id'];
             }
-            $mid = $this->_get("module");
+            $mid = $this->_get("mid");
             if (!empty($mid)){
             	$condition['mid'] = $mid;
             }

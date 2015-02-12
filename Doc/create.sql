@@ -65,6 +65,7 @@ CREATE TABLE IF NOT EXISTS `t_case` (
   `appId` int(8) NOT NULL,
   `userId` int(8) NOT NULL,
   `status` int(8) NOT NULL COMMENT '0-无效；1-有效',
+  `mid` int(8) NOT NULL COMMENT '模块ID',
   `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updateTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
@@ -193,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `t_user` (
   `updateTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-INSERT INTO `t_user` (`id`, `name`, `password`, `phone`, `email`, `role`, `defaultApp`, `createTime`, `updateTime`) VALUES (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '18088888888', '117217477@qq.com', '1', 0, '2014-08-26 12:31:54', '2015-01-27 14:18:25');
+
 -- 数据导出被取消选择。
 
 

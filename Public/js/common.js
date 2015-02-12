@@ -142,9 +142,9 @@ function getModules(){
         		redirect('/Login/login');
         	}
         	if(status == 'success:true'){
-        		$("select[name=module]").html(result.data);
-        		s = $("select[name=module]").attr("value");
-				$("option").each(function(){
+        		$("select[name=mid]").html(result.data);
+        		s = $("select[name=mid]").attr("value");
+				$("select[name=mid] option").each(function(){
 					if($(this).val() == s){
 						$(this).attr("selected",true);
 					}

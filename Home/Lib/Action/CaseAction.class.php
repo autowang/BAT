@@ -41,6 +41,10 @@ class CaseAction extends CommonAction {
             if (!empty($type)){
             	$condition['type'] = $type;
             }
+            $mid = $this->_get("mid");
+            if (!empty($mid)){
+            	$condition['mid'] = intval($mid);
+            }
         }
         
         $new = $this->merge($condition);
@@ -51,6 +55,7 @@ class CaseAction extends CommonAction {
         //添加username作为返回信息
         foreach ($cases as $case) {
             $case['username'] = getUserName($case['userId']);
+            $case['module'] = reset(D("Module")->getModule(array('id'=>$case['mid'])));
             $data[] = $case;
         }
         $this->assign('cases', $data);

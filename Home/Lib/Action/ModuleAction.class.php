@@ -18,7 +18,9 @@ class ModuleAction extends CommonAction{
 	}
 	
 	public function modules(){
-		$modules = D("Module")->getModule();
+		$where['status'] = C("VALID");
+		$where['appId'] = getAppId();
+		$modules = D("Module")->getModule($where);
 		$this->assign("datas",$modules);
 		$this->ajaxReturn($this->fetch(),"成功",'success:true');
 	}

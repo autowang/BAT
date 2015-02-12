@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	getModules();
 	updatePageBindEvent();
 	$("#case_page").addClass("active");
 	//更新操作
@@ -268,7 +269,7 @@ var getCaseDetails = function(action){
 
 var formToJson = function(obj){
 	var data = {};
-	obj.find("input,textarea").each(function(){
+	obj.find("input,textarea,select").each(function(){
 		var key = $(this).attr('name');
 		var value = $(this).val();
 		data[key] = value;

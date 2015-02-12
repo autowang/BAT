@@ -26,7 +26,10 @@
 				<input type="text" class="span2" name="api_id" placeholder="API-ID" value="{$Think.get.api_id|htmlspecialchars}">
 				<label>PATH：</label>
 				<input type="text" class="span3" name="api_path" placeholder="API-PATH" value="{$Think.get.api_path|htmlspecialchars}" autocomplete="off">
-				<button class="btn btn-info">查找</button>
+				<label>&nbsp&nbsp模块：</label>
+				<select name="mid" class="span1" value="{$Think.get.mid}">
+				</select>&nbsp
+				<button class="btn btn-info">查找</button>&nbsp
 				<a class="btn btn-info" id="reset-btn">重置</a>
 			</form>
 		</div>
@@ -50,8 +53,9 @@
 				<tr>
 					<th width="2%" style="text-align:center;"><input id="selectAll" type="checkbox" /></th>
 					<th width="7%" >ID</th>
-					<th width="65%">用例描述</th>
+					<th width="60%">用例描述</th>
 					<th width="4%">类型</th>
+					<th width="5%">模块</th>
 					<th width="7%">创建人</th>
 					<th width="15%">更新时间</th>
 				</tr>
@@ -72,6 +76,7 @@
 								<case value="3">方法</case>
 							</switch>
 						</td>
+						<td>{$case.module.desc}</td>
 						<td>{$case.username|htmlspecialchars}</td>
 						<td>{$case.updateTime|htmlspecialchars}</td>
 					</tr>

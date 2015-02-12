@@ -1469,7 +1469,6 @@ class Model {
         }else{
             $this->options['where'] =   $where;
         }
-        
         return $this;
     }
 

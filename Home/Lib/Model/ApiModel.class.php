@@ -19,7 +19,6 @@ class ApiModel extends CommonModel {
 		'apiId' => 'id',
 		'apiDesc'  => 'desc',
 		'request' =>  'requestContent',
-		'module' =>  'mid',
 		);
 
 
