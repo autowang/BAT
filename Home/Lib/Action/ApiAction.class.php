@@ -69,14 +69,12 @@ class ApiAction extends CommonAction {
         if (!$api) {
             $this->ajaxReturn(null, D('Api')->getError(), 'success:false');
         }
-
         //判断传入参数是否符合格式
         $api = D('Api')->parseRequestHeader($api);
-        $api['userId'] = getUserId();
         if (empty($api)) {
             $this->ajaxReturn(0, "请求头信息输入不正确，请检查格式！", "success:false");
         }
-
+        $api['userId'] = getUserId();
         //判断传入参数是否重复
         $condition['host'] = $api['host'];
         $condition['method'] = $api['method'];
