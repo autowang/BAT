@@ -3,9 +3,10 @@
 	<thead>
 		<tr>
 			<th width="7%">ID</th>
-			<th width="60%">PATH</th>
-			<th width="26%">METHOD</th>
-			<th width="7%">op</th>
+			<th width="40%">PATH</th>
+			<th width="31%">DESC</th>
+			<th width="15%">METHOD</th>
+			<th width="7%">OP</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -14,7 +15,10 @@
 		<tr>
 			<td>{$api.id}</td>
 			<td title="{$api.path|htmlspecialchars}">
-				<if condition="strlen($api['path']) gt 26">{$api.path|substr=0,26}...<else/>{$api.path}</if>
+				<if condition="strlen($api['path']) gt 20">{$api.path|substr=0,20}...<else/>{$api.path}</if>
+			</td>
+			<td title="{$api.desc|htmlspecialchars}">
+				<if condition="strlen($api['desc']) gt 20">{$api.desc|substr=0,20}...<else/>{$api.desc}</if>
 			</td>
 			<td>{$api.method}</td>
 			<td><i class="icon-plus add-api" id="{$api.id}"></i></td>

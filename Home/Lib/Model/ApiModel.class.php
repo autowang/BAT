@@ -67,7 +67,7 @@ class ApiModel extends CommonModel {
 	public function getApis($condition){
 		$condition['status'] = C('VALID');
 		$condition['appId'] = getAppId();
-		$apis = M('Api')->where($condition)->field('id,host,port,path,method,status')->order('createTime desc')->limit(9)->select();
+		$apis = M('Api')->where($condition)->order('createTime desc')->limit(9)->select();
 		if (empty($apis)){
 			return false;
 		}
