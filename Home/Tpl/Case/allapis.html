@@ -15,10 +15,10 @@
 		<tr>
 			<td>{$api.id}</td>
 			<td title="{$api.path|htmlspecialchars}">
-				<if condition="strlen($api['path']) gt 20">{$api.path|substr=0,20}...<else/>{$api.path}</if>
+				<if condition="strlen($api['path']) gt 15">{$api.path|substr=0,15}...<else/>{$api.path}</if>
 			</td>
 			<td title="{$api.desc|htmlspecialchars}">
-				<if condition="strlen($api['desc']) gt 20">{$api.desc|substr=0,20}...<else/>{$api.desc}</if>
+				<if condition="strlen($api['desc']) gt 15">{$api.desc|substr=0,15}...<else/>{$api.desc}</if>
 			</td>
 			<td>{$api.method}</td>
 			<td><i class="icon-plus add-api" id="{$api.id}"></i></td>
