@@ -78,6 +78,14 @@ class CaseAction extends CommonAction {
      * 用例新增页面
      */
     public function add() {
+    	$apiId = $this->_get('apiId');
+    	if (!empty($apiId)){
+	    	$api = D('Api')->field('id,desc,host,port,path,protocol,method,params')->getById($apiId);
+	    	$api['current'] = md5(time());
+    		$http = $this->tpl('Component:http',$api);
+    		$this->assign('http',$http);
+    	}
+    	
         $this->display();
     }
 

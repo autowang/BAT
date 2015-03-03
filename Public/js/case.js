@@ -299,7 +299,7 @@ var updatePageBindEvent = function(){
 		keys($(this));
 	});
 	
-	//给select绑定点击时间
+	//给select绑定点击事件
 	$(".stype").click(function(){
 		select = $(this).val();
 		$(this).prev("input[name=script_type]").val(select);

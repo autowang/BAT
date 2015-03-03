@@ -27,6 +27,22 @@ $(document).ready(function(){
 		redirect("/Api/update?id=" + id);
 	});
 	
+	$('#case_add').click(function(){
+		var checked_num = $(".selectCell:checked").length; 
+		if (checked_num > 1) {
+			showError("一次只能操作一条记录！");
+			return false;
+		};
+
+		if (checked_num < 1) {
+			showError("请选择需要操作的记录！");
+			return false;
+		}; 
+
+		var id = $(".selectCell:checked").attr("value");
+		redirect("/case/add?apiId=" + id);
+	});
+	
 
 	//删除操作
 	$("#api_delete").click(function(){
