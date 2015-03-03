@@ -11,7 +11,7 @@ class ApiModel extends CommonModel {
 
 	protected $_validate = array(
 		array('requestContent','require','请求包内容不能为空'),
-		array('responseContent','require','响应包内容不能为空'),
+		array('mid','require','请指定API的所属模块'),
 		array('desc','require','描述内容不能为空'),
 		);
 

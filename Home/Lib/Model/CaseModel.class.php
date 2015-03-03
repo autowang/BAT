@@ -95,6 +95,10 @@ class CaseModel extends CommonRelationModel{
 			$result['msg'] = '用例类型必须选择';
 			return $result;
 		}
+		if (empty($summary['mid'])){
+			$result['msg'] = '请指定用例所属模块';
+			return $result;
+		}
 		return true;
 	}
 	
