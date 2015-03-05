@@ -164,6 +164,7 @@ var deleteCase = function(){
 	}; 
 	showError("该操作不可逆，你确认要删除这些记录吗？");
 	$("#error_conform").click(function(){
+		$("#error_conform").unbind("click");
 		var ids = new Array();
 		$(".selectCell:checked").each(function(){
 			id = $(this).attr("value");
@@ -183,7 +184,6 @@ var deleteCase = function(){
             	}
             	if(status == 'success:false'){
             		showInfo(result.info);
-//            		setTimeout("location.reload()",4000);
             	}
             }
         });	

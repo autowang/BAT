@@ -234,16 +234,15 @@ class CaseModel extends CommonRelationModel{
 	
 	
 	/**
-	 * 检查某一个case失败被其他case或者测试计划引用
-	 * @param id字符串 $idStr
-	 * @return string
+	 * 检查某一个case是否被其他case引用
 	 */
-	public function isUsing($caseId){
+	public function caseUsing($caseId){
 		$where['type'] = self::TESTCASE;
-		$where['content'] = "{\"id\":\"$caseId\"}";
+		$where['content'] = array('like',"%$caseId%");
 		$steps = D("Step")->getStep($where);
+		
 		if (empty($steps)){
-			return '';
+			return null;
 		}
 		$cids = array();
 		foreach ($steps as $step){
@@ -251,5 +250,23 @@ class CaseModel extends CommonRelationModel{
 		}
 		return implode(',', array_unique($cids));
 		
+	}
+	
+	/**
+	 * 检查某一个case是否被其他plan引用
+	 */
+	public function planUsing($caseId){
+		$where['appId']=getAppId();
+		$plans = D("Plan")->where($where)->select();
+		if (empty($plans)){
+			return null;
+		}
+		$pids = array();
+		foreach ($plans as $plan){
+			if (in_array($caseId, explode(',', $plan['caseIds']))){
+				$pids[] = $plan['id'];
+			}
+		}
+		return implode(',', array_unique($pids));
 	}
 }

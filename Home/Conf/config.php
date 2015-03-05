@@ -4,7 +4,7 @@ require_once("error.php");
 
 $config = array(
 
-	//'SHOW_PAGE_TRACE' =>true, //开启页面Trace
+	'SHOW_PAGE_TRACE' =>true, //开启页面Trace
 	
 	'LAYOUT_ON' => 'true',//开启模版布局
 

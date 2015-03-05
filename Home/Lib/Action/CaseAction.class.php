@@ -198,26 +198,21 @@ class CaseAction extends CommonAction {
             $this->ajaxReturn(0, "请选择待删除的case。", "success:false");
         }
         $caseIds = explode(',', $ids);
-        $fail = array();
         foreach ($caseIds as $caseId){
-	        $ret = D("Case")->isUsing($caseId);
-	        if (empty($ret)){
-		        $data["id"] = $caseId;
-		        $data['status'] = C('INVALID');
-		        $data['updateTime'] = getCurrentTime();
-		        D('Case')->save($data);
-		        continue;
+	        $cids = D("Case")->caseUsing($caseId);
+	        $pids = D("Case")->planUsing($caseId);
+	        if(!empty($cids)){
+	        	$this->ajaxReturn(null,"删除用例失败:用例[id=$caseId]与用例[ids=$cids]存在引用关系！","success:false");
 	        }
-        	$fail[$caseId] = $ret;
+	        if(!empty($pids)){
+	        	$this->ajaxReturn(null,"删除用例失败:用例[id=$caseId]与计划[ids=$pids]存在引用关系！","success:false");
+	        }
+	        $data["id"] = $caseId;
+	        $data['status'] = C('INVALID');
+	        $data['updateTime'] = getCurrentTime();
+	        D('Case')->save($data);
         }
-        if (empty($fail)) {
-	        $this->ajaxReturn($ret, "成功删除选择的测试用例。", "success:true");
-        }
-        $str = '';
-        foreach ($fail as $k=>$v){
-        	$str .= "用例[id=$k]与用例[ids=$v]存在引用关系;";
-        }
-        $this->ajaxReturn(null,"部分用例删除失败,$str","success:false");
+        $this->ajaxReturn(null,"操作完成","success:true");
     }
 
     /**
