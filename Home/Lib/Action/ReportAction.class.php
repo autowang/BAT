@@ -74,7 +74,7 @@ class ReportAction extends CommonAction{
 		$page = $this->getPaging('Report', $where);
 		$paging = $page->show();
 		$this->assign('paging', $paging);
-		$crlist = D('Report')->relation(true)->where($where)->order('result desc')->limit($page->firstRow . ',' . $page->listRows)->select();
+		$crlist = D('Report')->relation(true)->where($where)->order('createTime desc')->limit($page->firstRow . ',' . $page->listRows)->select();
 		$datas = array();
 		foreach ($crlist as $cr){
 			$cases = D('Case')->getCase(array('id' => $cr['objId']),false);
