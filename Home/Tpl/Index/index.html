@@ -10,17 +10,17 @@
 			<thead>
 				<tr>
 					<th width="10%">用户</th>
-					<th width="45%">API</th>
-					<th width="45%">测试用例</th>
+					<th width="45%">API-<span style="color:#FF5151">({$totalApi})</span></th>
+					<th width="45%">测试用例-<span style="color:#FF5151">({$totalCase})</span></th>
 				</tr>
 			</thead>
 			<tbody>
-				<if condition="!empty($datas)"> 
-				<volist name="datas" id="data">
+				<if condition="!empty($data)"> 
+				<volist name="data" id="vo">
 				<tr>
-					<td>{$data.username}</td>
-					<td><a href="{:U('Api/alist')}?owner={$data.username}">{$data.apiCount}</a></td>
-					<td><a href="{:U('Case/clist')}?owner={$data.username}">{$data.caseCount}</a></td>
+					<td>{$vo.username}</td>
+					<td><a href="{:U('Api/alist')}?owner={$vo.username}">{$vo.apiCount}</a></td>
+					<td><a href="{:U('Case/clist')}?owner={$vo.username}">{$vo.caseCount}</a></td>
 				</tr>
 				</volist> 
 				<else />
