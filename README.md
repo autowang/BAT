@@ -5,6 +5,8 @@
 
 ####更多信息<a href="https://github.com/autowang/BAT/blob/master/Doc/BAT%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.docx?raw=true">点击这里</a>查看使用手册
 
+####交流QQ群：188734537
+
 ## BAT运行环境要求
 * JDK 1.6+ ，请配置好JAVA_HOME的环境变量
 * PHP 5.4+ 
