@@ -11,6 +11,15 @@ class AppModel extends Model
 		array('name','require','app名称不能为空'),
 		array('desc','require','描述内容不能为空'),
 	);
+    //关联配置
+    protected $_link = array(
+        'Module' => array(
+            'mapping_type'=>MANY_TO_MANY,
+            'class_name'=>'Module',
+            'foreign_key'=>'appId',
+            'mapping_name'=>'modules',
+        ),
+    );
 	
 	/*
 	 * 检查App是否符合规范
