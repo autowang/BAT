@@ -64,6 +64,13 @@ function editTreeNode(){
 
 var zTree, rMenu;
 $(document).ready(function(){
+    //初始化select控件
+    $("#addedApps").select2({
+        placeholder: "Select App(s)",
+        allowClear: true
+    });
+    //提交新增操作
+    $("#module_add_form").submit(doAdd);
 	var setting = {
 		view: {
 			dblClickExpand: false
@@ -93,3 +100,31 @@ $(document).ready(function(){
 	     }
 	});
 });
+//新增module到数据库
+var doAdd = function(){
+    var apps = " ";
+    var obj = $("#addedApps").find("option:selected");
+    for(var i=0; i<obj.length-1; i++){
+        apps += obj[i].value + " ";
+    }
+    $.ajax({
+        type:"post",
+        url:URL + "/doAdd",
+        data:$('#module_add_form').serialize() + apps,
+        success:function(result){
+            status = result.status;
+            if(status == 10001){
+                redirect('/Login/login');
+            }
+            if(status == "success:true") {
+                redirect('/Module/mlist');
+            }
+            if(status == "success:false"){
+                console.info(status);
+                showInfo(result.info);
+            }
+        }
+    });
+    return false;
+}
+

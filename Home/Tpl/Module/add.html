@@ -1,0 +1,51 @@
+<div class="span10 offset1">
+    <div class="span12">
+        <ul class="breadcrumb well">
+            <li><a href="{:U('Index/index')}">首页</a> <span class="divider">/</span></li>
+            <li><a href="{:U('Module/mlist')}">模块管理</a><span class="divider">/</span></li>
+            <li>新增</li>
+        </ul>
+    </div>
+    <div class="span12">
+        <form id="module_add_form" class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label"><i class="required">*</i>名称：</label>
+                    <div class="controls">
+                        <textarea name="name" rows="1" class="span11" placeholder="模块名称" required></textarea>
+                    </div>
+                </div>
+                <div class="control-group">
+                <label class="control-label"><i class="required">*</i>描述：</label>
+                <div class="controls">
+                    <textarea name="desc" rows="5" class="span11" placeholder="模块的描述信息" required></textarea>
+                </div>
+                </div>
+            <div class="span12">
+                <div class="control-group span6">
+                    <label class="control-label"><i class="required">*</i>默认App：</label>
+                    <div class="controls">
+                        <select name="defaultApp" id ="defaultApp"  class="form-control span11">
+                            <volist name="apps" id="app">
+                                <option>{$app.appName}</option>
+                            </volist>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group span6">
+                    <label class="control-label">关联App：</label>
+                    <div class="controls">
+                        <select name="addedApps" id="addedApps" class="populate placeholder form-control span10" multiple>
+                            <volist name="apps" id="app">
+                                <option value="{$app.appName}">{$app.appName}</option>
+                            </volist>
+                        </select>
+                    </div>
+                </div>
+                </div>
+                <div style="text-align:center"><button type="submit" class="btn btn-info">保存</button ></div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/select2.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/select2.css">
+<script src="__PUBLIC__/js/module.js"></script>
