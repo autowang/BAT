@@ -22,13 +22,9 @@
                 </div>
             <div class="span12">
                 <div class="control-group span6">
-                    <label class="control-label"><i class="required">*</i>默认App：</label>
+                    <label class="control-label"><i class="required">*</i>当前App：</label>
                     <div class="controls">
-                        <select name="defaultApp" id ="defaultApp"  class="form-control span11">
-                            <volist name="apps" id="app">
-                                <option>{$app.appName}</option>
-                            </volist>
-                        </select>
+                        <textarea name="currentApp" rows="1" class="span11" placeholder="当前app的名称" disabled="disabled">{$currentApp}</textarea>
                     </div>
                 </div>
                 <div class="control-group span6">
