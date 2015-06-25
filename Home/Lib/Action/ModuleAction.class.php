@@ -48,12 +48,13 @@ class ModuleAction extends CommonAction{
         $currnet_appId=D('App')->getIdByAppName(session('appName'));
         //默认App插入module
         $data['name'] = $module['name'];
-        $data['desc'] = $module['desc'];
+        $data['status'] = C('VALID');
         $data['appId'] = $currnet_appId;
         $temp = D('Module')->checkDuplicate($data);
         if (!empty($temp)) {
             $this->ajaxReturn(0,session('appName')."下已有同名的模块，不允许重复录入", "success:false");
         }
+        $data['desc'] = $module['desc'];
         $ret = D('Module')->add($data);
         if (!$ret) {
             $this->ajaxReturn(0, "新增模块数据失败！", "success:false");
@@ -69,6 +70,7 @@ class ModuleAction extends CommonAction{
             //判断module名是否重复（同一app下不能重复）
             if($module['apps'][$i]!=$currnet_appId) {
                 $condition['name'] = $module['name'];
+                $condition['status'] = C('VALID');
                 $condition['appId'] = $module['apps'][$i];
                 $temp = D('Module')->checkDuplicate($condition);
                 if (!empty($temp)) {
