@@ -127,11 +127,19 @@ class PlanAction extends CommonAction
 	 */
 	public function allCase(){
 		$id = $this->_get('id');
+        $caseId = $this->_get('case_id');
+        $caseDesc = $this->_get('case_desc');
 		$where = $this->merge();
 		if ($id > 0){
 			$plan = M('Plan')->getById($id);
 			$where['id'] = array('not in',$plan['caseIds']);
 		}
+        if (!empty($caseId)){
+            $where['id'] = $caseId;
+        }
+        if (!empty($caseDesc)) {
+            $where['desc'] = array('like',"%$caseDesc%");
+        }
 		$where['type'] = array('neq',3);
 		$cases = M("Case")->where($where)->field('id,desc')->select();
 		$this->assign("cases",$cases);

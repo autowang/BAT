@@ -28,4 +28,13 @@ class ModuleModel extends CommonModel{
         return M('Module')->where($condition)->find();
     }
 
+    /*
+	 * 根据ModuleId返回Module名称
+	 */
+    public function getModuleNameByModuleId($moduleId)
+    {
+        $condition['id'] = $moduleId;
+        $module = M('Module')->where($condition)->select();
+        return $module[0]['name'];
+    }
 }
