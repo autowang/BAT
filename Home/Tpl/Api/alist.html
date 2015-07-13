@@ -78,7 +78,7 @@
 						<if condition="mb_strlen($api['desc'],'utf8') gt 14">{$api.desc|mb_substr=0,14,utf8}...<else/>{$api.desc}</if>
 					</td>
 					<td>{$api.times}</td>
-					<td>{$api.module.desc}</td>
+					<td>{$api.module.name}</td>
 					<td>{$api.user.name}</td>
 					<td>{$api.updateTime}</td>
 				</tr>

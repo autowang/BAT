@@ -25,6 +25,14 @@ class ComponentAction extends CommonAction{
 		$content = $this->fetch();
 		$this->ajaxReturn($content,"成功",'success:true');
 	}
+
+    //规则断言模版
+    public function keyvalue(){
+        $step['current'] = md5(microtime());
+        $this->assign('step',$step);
+        $content = $this->fetch();
+        $this->ajaxReturn($content,"成功",'success:true');
+    }
 	
 	//参数提取器
 	public function regex(){

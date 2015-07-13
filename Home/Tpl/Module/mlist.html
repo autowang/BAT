@@ -9,15 +9,15 @@
 	<div class="span12">
 		<div class="bc">
 			<form class="form-inline" action="{:U('Module/mlist')}" method="get">
-				<label>描述：</label>
-				<input style="width:150px;" type="text" name="desc" placeholder="模块描述" value="{$Think.get.desc}" /> 
+				<label>名称：</label>
+				<input style="width:150px;" type="text" name="name" placeholder="模块名称" value="{$Think.get.name}" />
 				<button type="submit" class="btn btn-info" >查找</button>
 				<a class="btn btn-info" id="reset-btn">重置</a>
 			</form>
 			
 		</div>
 	</div>
-	<if condition="getRole() eq 100">
+	<if condition="getRole() eq 1">
 		<div class="btn-group tool-btn">
 			<a href="{:U('Module/add')}" class="btn btn-info">新增</a>
 			<a id="module_update" class="btn btn-info">修改</a>
@@ -33,7 +33,8 @@
 							id="selectAll" type="checkbox" /></th>
 					</if>
 					<th width="5%">ID</th>
-					<th width="70%">描述</th>
+                    <th width="20%">名称</th>
+					<th width="50%">描述</th>
 					<th width="20%">创建时间</th>
 				</tr>
 			</thead>
@@ -46,6 +47,7 @@
 							type="checkbox" value="{$data.id}" /></td>
 					</if>
 					<td>{$data.id}</td>
+                    <td>{$data.name}</td>
 					<td>{$data.desc}</td>
 					<td>{$data.createTime}</td>
 				</tr>
@@ -60,4 +62,6 @@
 	</div>
 	<div class="green-black">{$paging}</div>
 </div>
+<script type="text/javascript" src="__PUBLIC__/js/select2.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/select2.css">
 <script src="__PUBLIC__/js/module.js"></script>

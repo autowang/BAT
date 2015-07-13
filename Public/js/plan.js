@@ -29,6 +29,8 @@ $(document).ready(function(){
 	$(".icon-remove").click(function(){
 		$(this).closest('tr').remove();
 	});
+    //查找case
+    $("#case_search").click(findCase);
 	
 	//添加测试计划表单提交
 	$("#plan_add_form").submit(function(){
@@ -140,7 +142,31 @@ function deletePlan(){
         });	
 	});
 }
-
+var findCase = function(){
+    var id = $("#plan-id").val();
+    var case_id = $("#case_id").val();
+    var case_desc = $("#case_desc").val();
+    if(case_id == '' && case_desc == ''){
+        showInfo("请输入条件进行查询");
+        return false;
+    }
+    $.ajax({
+        type : "get",
+        url : APP + "/Plan/allCase",
+        data : "id=" + id + "&case_id=" + case_id + "&case_desc=" + case_desc,
+        success:function(result){
+            status = result.status;
+            if(status == 10001){
+                redirect('/Login/login');
+            }
+            if(status == 'success:false'){
+                showInfo(result.info);
+                return false;
+            }
+            $("#case_body").html(result.data);
+        }
+    });
+}
 //执行测试计划
 function execute(){
 	var checked_num = $(".selectCell:checked").length; 

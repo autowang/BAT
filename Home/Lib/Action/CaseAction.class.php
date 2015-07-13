@@ -146,7 +146,24 @@ class CaseAction extends CommonAction {
                 $steps .= $this->tpl('Component:http', $content);
             }
             if ($step['type'] == CaseModel::ASSERT) {
-                $steps .= $this->tpl('Component:assert', $content);
+                //获取assert模板，替换其中的radio名
+                $assertPage = $this->tpl('Component:assert', $content);
+                $assertPage = str_replace("assert_type", "assert_type_".$index, $assertPage);
+                $assertPage = str_replace("assert_full", "assert_full_".$index, $assertPage);
+                $assertPage = str_replace("assert_rule", "assert_rule_".$index, $assertPage);
+                $assertPage = str_replace("assertType", "assertType_".$index, $assertPage);
+                if($content['assertType'] == 2){
+                    //解析assert为key-value格式
+                    $asserts = explode('(.*)', trim(str_replace('("?)', "", $content['assert']), '(.*)'));
+                    $keyValueRow = "";
+                    foreach ($asserts as $ast){
+                        $assertContent['key'] = explode(":", $ast)[0];
+                        $assertContent['value'] = explode(":", $ast)[1];
+                        $keyValueRow .= $this->tpl('Component:keyvalue', $assertContent);
+                    }
+                    $assertPage = str_replace("</thead>", $keyValueRow."</thead>", $assertPage);
+                }
+                $steps .= $assertPage;
             }
             if ($step['type'] == CaseModel::REGEX) {
                 $steps .= $this->tpl('Component:regex', $content);
