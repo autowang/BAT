@@ -2,7 +2,7 @@
 
 class ApiModel extends CommonModel {
 	
-	protected $headKeys = array('X-Session-Token','Content-Type','Accept-Language','Cache-Control','Accept-Encoding','User-Agent','Accept');
+	protected $headKeys = array('X-Session-Token','Content-Type','Accept-Language','Cache-Control','Accept-Encoding','User-Agent','Accept','navi2.requestId','navi2.traceId');
 
 	protected $_auto = array (
 		array('appId','getAppId',1,'function'),
@@ -82,6 +82,9 @@ class ApiModel extends CommonModel {
 			$h = explode(':', $h, 2);
 			
 			if (isset($h[1]) && in_array($h[0], $this->headKeys)) {
+				if($h[0] == 'Content-Type' && stripos($h[1],'multipart') >= 0 && stripos($h[1],'multipart') !== false){
+					continue;
+				}
 				$headers[$h[0]] = trim($h[1]);
 			}
 		}

@@ -8,6 +8,9 @@ class CommonAction extends Action{
 	const NO_LOGIN = 10001;
 	
 	public function _initialize(){
+        if(ACTION_NAME == 'execute'){
+            return true;
+        }
 		if (!session('?uid') || !session('?appId')){
 			if ($this->isAjax()){
 				$this->ajaxReturn(null,'登录态失效！',self::NO_LOGIN);
@@ -15,7 +18,6 @@ class CommonAction extends Action{
 				$this->redirect('Login/login');
 			}
 		}
-		//TODO 数据权限检查
 	}
 	
 	/**
@@ -53,6 +55,5 @@ class CommonAction extends Action{
 		}else{
 			return array_merge($old,$condition);
 		}
-		
 	}
 }

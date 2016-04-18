@@ -14,12 +14,8 @@
 		<volist name="apis" id="api">
 		<tr>
 			<td>{$api.id}</td>
-			<td title="{$api.path|htmlspecialchars}">
-				<if condition="strlen($api['path']) gt 15">{$api.path|substr=0,15}...<else/>{$api.path}</if>
-			</td>
-			<td title="{$api.desc|htmlspecialchars}">
-				<if condition="strlen($api['desc']) gt 15">{$api.desc|substr=0,15}...<else/>{$api.desc}</if>
-			</td>
+			<td title="{$api.path|htmlspecialchars}">{$api.path}</td>
+			<td title="{$api.desc|htmlspecialchars}">{$api.desc}</td>
 			<td>{$api.method}</td>
 			<td><i class="icon-plus add-api" id="{$api.id}"></i></td>
 		</tr>

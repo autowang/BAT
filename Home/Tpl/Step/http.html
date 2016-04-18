@@ -1,6 +1,7 @@
 {__NOLAYOUT__}
 				<HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="{$step.apiDesc|htmlspecialchars}" enabled="true">
-					<if condition="$step['method'] eq 'PUT' or (empty($step['params']) and !empty($step['paramStr']))">
+					<php>echo $stem['json']; </php>
+					<if condition="$step.json eq true">
 						<boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
 						<elementProp name="HTTPsampler.Arguments" elementType="Arguments">
 							<collectionProp name="Arguments.arguments">
@@ -40,7 +41,7 @@
 					<!-- 协议类型 -->
 					<stringProp name="HTTPSampler.protocol">{$step.protocol}</stringProp>
 					<!-- 请求参数编码类型,默认UTF8 -->
-					<stringProp name="HTTPSampler.contentEncoding"></stringProp>
+					<stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
 					<!-- http的path部分 -->
 					<stringProp name="HTTPSampler.path">{$step.path}</stringProp>
 					<!-- 请求method -->

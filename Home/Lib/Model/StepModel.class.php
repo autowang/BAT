@@ -78,13 +78,13 @@ class StepModel extends Model{
 					$temp = $this->http($content);
 					break;
 				case CaseModel::ASSERT:
-					$temp['assert'] = $this->assert($case['id'],$temp['apiId'],$reportId,$content);
+					$temp['assert'] .= $this->assert($case['id'],$temp['apiId'],$reportId,$content);
 					if ($over == $index){
 						$sts[] = $temp;
 					}
 					break;
 				case CaseModel::REGEX:
-					$temp['regex'] = A("Step")->tpl("Step:regex",$content);
+					$temp['regex'] .= A("Step")->tpl("Step:regex",$content);
 					if ($over == $index){
 						$sts[] = $temp;
 					}

@@ -5,8 +5,11 @@ class StepAction extends CommonAction{
 		$case = D("Case")->relation(true)->getById($caseId);
 		$cookie = $this->tpl("Step:cookie");
 		$testData = D("Step")->testData($case['appId'],$planId);
+        $case['desc'] = htmlspecialchars($case['desc']);
 		$steps = D("Step")->steps($case,$resultId);
-		foreach ($steps as $index=>$step){
+        $jmx = '';
+		foreach ($steps as $index=>&$step){
+            $step['json'] = strpos($step['header'],'application/json') ? true : false;
 			if(count($step) > 1){
 				$jmx .= $this->tpl('Step:http',$step);
 				continue;

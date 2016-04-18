@@ -6,8 +6,8 @@ class CommonRelationModel extends RelationModel{
 	 */
 	public function strToFile($path,$file,$content){
 		if (!file_exists($path)){
-			mkdir($path,0777,true);
-		}
+            mkdir($path,0777,true);
+        }
 		$file = $path.$file;
 		$handle = fopen($file, "w+");
 		if(!$handle){

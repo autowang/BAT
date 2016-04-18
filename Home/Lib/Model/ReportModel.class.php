@@ -99,4 +99,25 @@ class ReportModel extends CommonRelationModel{
 		}
 		return array('success'=>$success,'fail'=>$fail);
 	}
+
+    /**
+	 * 根据planId返回最新的reportId
+	 */
+    public function getLatestReportByPlanId($planId)
+    {
+        $condition['objId'] = $planId;
+        $condition['type'] = 2;
+        $prid = D("Report")->where($condition)->order('createTime desc')->limit(1)->field('id')->select();
+        return $prid[0]['id'];
+    }
+
+    /**
+     * 根据planReportId返回对应的planId
+     */
+    public function getPlanIdByPrid($prid)
+    {
+        $condition['id'] = $prid;
+        $prid = D("Report")->where($condition)->field('objId')->select();
+        return $prid[0]['objId'];
+    }
 }

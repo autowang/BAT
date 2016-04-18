@@ -71,7 +71,7 @@ class DataAction extends CommonAction
 			}
 			$upload->savePath = $path;
 			if(!$upload->upload()){
-				$this->error($upload->getErrorMsg(),__URL__.'add',2);
+				$this->error($upload->getErrorMsg(),__URL__.'/add',2);
 			}
 			$data['value'] = $path.$file['upload_file']['name'];
 		}
