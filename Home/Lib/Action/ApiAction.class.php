@@ -174,6 +174,7 @@ class ApiAction extends CommonAction {
     	$path = $this->_get("path");
     	$condition['path'] = array('like','%'.$path.'%');
     	$condition['appId'] = getAppId();
+        $condition['status'] = C('VALID');
     	$apis = D("Api")->where($condition)->field('path')->select();
     	$temp = array();
     	foreach ($apis as $api){
